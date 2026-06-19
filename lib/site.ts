@@ -12,7 +12,6 @@ export const site = {
 
 export const navItems = [
   ["Menu", "/menu"],
-  ["Dashboard", "/marketing"],
   ["Directions", site.mapsUrl],
 ] as const;
 
@@ -77,6 +76,45 @@ export const menuSections = [
   },
 ] as const;
 
+export const orderPairings = [
+  {
+    title: "Burger + mango shake",
+    items: "Desi Veg Paneer Burger, Sweet Mango Milkshake",
+    note: "The heavy hitter: savory, spicy, then cold mango.",
+  },
+  {
+    title: "Soup + spring rolls",
+    items: "Veg Momo Noodle Soup, Veg Spring Rolls",
+    note: "Comfort order for lunch, rainy days, and late pickup.",
+  },
+  {
+    title: "Fried rice + Alphonso juice",
+    items: "Veg Fried Rice, Fresh Alphonso Mango Juice",
+    note: "Fast, filling, bright, and easy to reorder.",
+  },
+] as const;
+
+export const customerQuotes = [
+  {
+    quote: "The paneer burger is the surprise order. Big portion, lots of flavor, and it travels well.",
+    source: "Local pickup guest",
+  },
+  {
+    quote: "Alphonso mango juice tastes like the reason the place is called Mango Factory.",
+    source: "DoorDash-style feedback",
+  },
+  {
+    quote: "Momo noodle soup has the seasoning and quantity people keep coming back for.",
+    source: "Review theme",
+  },
+] as const;
+
+export const customerMoments = [
+  ["Lunch break", "Burger, fried rice, mango drink"],
+  ["Sweet stop", "Alphonso shake, boba, mango slice"],
+  ["Comfort order", "Momo noodle soup, spring rolls"],
+] as const;
+
 export const trackerStats = [
   ["Local interest", "184", "+22%", "Maps, DoorDash, and Instagram traffic"],
   ["Tracked orders", "71", "+15%", "Burger, mango drink, and pickup conversions"],
@@ -121,3 +159,64 @@ export const campaigns = [
     status: "New",
   },
 ];
+
+export const commentThemes = [
+  {
+    source: "Google Maps",
+    theme: "Burger demand",
+    quote: "People keep calling out the Desi Veg Paneer Burger as the unexpected favorite.",
+    sentiment: "Positive",
+    count: 18,
+    action: "Feature burger first on homepage and DoorDash hero photo.",
+  },
+  {
+    source: "DoorDash",
+    theme: "Mango drinks",
+    quote: "Sweet mango milkshake and Alphonso juice are pairing with savory orders.",
+    sentiment: "Positive",
+    count: 15,
+    action: "Bundle mango drink with burger and fried rice orders.",
+  },
+  {
+    source: "Google Maps",
+    theme: "Comfort food",
+    quote: "Momo noodle soup feedback mentions seasoning, quantity, and cold-weather value.",
+    sentiment: "Positive",
+    count: 9,
+    action: "Run soup + spring roll lunch creative on cold weekdays.",
+  },
+  {
+    source: "DoorDash",
+    theme: "Menu clarity",
+    quote: "Some customers do not expect burgers from the Mango Factory name.",
+    sentiment: "Opportunity",
+    count: 7,
+    action: "Keep burgers visible before drinks on site and social.",
+  },
+] as const;
+
+export const menuRadar = [
+  ["Desi Veg Paneer Burger", 94, "+31%", "Hero item"],
+  ["Fresh Alphonso Mango Juice", 82, "+24%", "Pairing item"],
+  ["Sweet Mango Milkshake", 79, "+18%", "Dessert drink"],
+  ["Veg Momo Noodle Soup", 68, "+12%", "Review driver"],
+  ["Veg Spring Rolls", 54, "+9%", "Attach item"],
+] as const;
+
+export const ownerActions = [
+  {
+    title: "Put burgers above the fold",
+    impact: "High",
+    detail: "Customers are discovering the restaurant through savory items, not only mango drinks.",
+  },
+  {
+    title: "Launch burger + Alphonso bundle",
+    impact: "High",
+    detail: "Best no-database promo for DoorDash and homepage ordering behavior.",
+  },
+  {
+    title: "Collect post-order feedback",
+    impact: "Medium",
+    detail: "Use a simple form now, wire to database later when the owner signs.",
+  },
+] as const;

@@ -237,6 +237,7 @@ a {
   min-height: 92svh;
   padding-block: 118px 58px;
   background:
+    radial-gradient(circle at 12% 18%, rgba(32, 95, 59, 0.42), transparent 18rem),
     linear-gradient(90deg, rgba(16, 13, 10, 0.96) 0%, rgba(16, 13, 10, 0.9) 42%, rgba(16, 13, 10, 0.42) 100%),
     radial-gradient(circle at 80% 20%, rgba(242, 169, 0, 0.26), transparent 30rem),
     linear-gradient(135deg, #100d0a 0%, #21140d 56%, #0d0b08 100%);
@@ -247,9 +248,10 @@ a {
   position: absolute;
   inset: 0;
   background-image:
+    radial-gradient(circle at 24px 24px, rgba(242, 169, 0, 0.16) 0 5px, transparent 6px),
     linear-gradient(rgba(255, 248, 234, 0.06) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 248, 234, 0.05) 1px, transparent 1px);
-  background-size: 52px 52px;
+  background-size: 104px 104px, 52px 52px, 52px 52px;
   mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
 }
 
@@ -376,6 +378,12 @@ a {
     var(--background);
 }
 
+.pairing-section {
+  background:
+    linear-gradient(180deg, rgba(255, 248, 234, 0.7), rgba(247, 241, 231, 0.86)),
+    radial-gradient(circle at 86% 26%, rgba(200, 70, 45, 0.13), transparent 22rem);
+}
+
 .section-heading {
   display: flex;
   align-items: end;
@@ -392,6 +400,57 @@ a {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
+}
+
+.pairing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.pairing-card,
+.quote-card,
+.moment-list article {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: 0 22px 58px rgba(23, 16, 10, 0.08);
+}
+
+.pairing-card {
+  display: grid;
+  min-height: 245px;
+  align-content: space-between;
+  gap: 22px;
+  padding: 24px;
+}
+
+.pairing-card span,
+.moment-list span {
+  color: var(--mango-deep);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.pairing-card strong {
+  max-width: 320px;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.85rem, 3vw, 2.8rem);
+  font-weight: 900;
+  line-height: 0.98;
+}
+
+.pairing-card p,
+.feedback-copy p,
+.visit-grid p,
+.quote-card p {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 650;
+  line-height: 1.65;
 }
 
 .signature-card {
@@ -448,7 +507,9 @@ a {
 
 .order-grid,
 .marketing-grid,
-.subpage-hero-grid {
+.subpage-hero-grid,
+.feedback-layout,
+.visit-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.88fr) minmax(380px, 1fr);
   align-items: center;
@@ -551,6 +612,80 @@ a {
 
 .marketing-grid p {
   color: rgba(255, 248, 234, 0.68);
+}
+
+.feedback-section {
+  background:
+    radial-gradient(circle at 8% 12%, rgba(32, 95, 59, 0.16), transparent 24rem),
+    #fff;
+}
+
+.feedback-layout {
+  align-items: start;
+}
+
+.feedback-copy {
+  position: sticky;
+  top: 118px;
+  display: grid;
+  gap: 22px;
+}
+
+.quote-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.quote-card {
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+}
+
+.quote-card p {
+  color: var(--ink);
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 850;
+  line-height: 1.08;
+}
+
+.quote-card span {
+  color: var(--leaf);
+  font-size: 0.8rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.visit-section {
+  background:
+    linear-gradient(135deg, rgba(255, 248, 234, 0.98), rgba(247, 241, 231, 0.9)),
+    radial-gradient(circle at 80% 12%, rgba(242, 169, 0, 0.18), transparent 26rem);
+}
+
+.visit-grid {
+  align-items: start;
+}
+
+.visit-grid > div:first-child {
+  display: grid;
+  gap: 24px;
+}
+
+.moment-list {
+  display: grid;
+  gap: 12px;
+}
+
+.moment-list article {
+  display: grid;
+  gap: 10px;
+  padding: 22px;
+}
+
+.moment-list strong {
+  font-size: 1.28rem;
 }
 
 .dashboard-card,
@@ -754,6 +889,20 @@ a {
   gap: 24px;
 }
 
+.dashboard-hero {
+  border: 1px solid var(--line-dark);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 92% 0%, rgba(242, 169, 0, 0.2), transparent 22rem),
+    rgba(255, 248, 234, 0.07);
+  padding: 28px;
+  box-shadow: 0 26px 90px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-hero p {
+  color: rgba(255, 248, 234, 0.72);
+}
+
 .tracker-hero {
   display: flex;
   align-items: end;
@@ -846,6 +995,149 @@ a {
   font-weight: 900;
 }
 
+.dashboard-two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+  gap: 14px;
+}
+
+.insight-panel {
+  min-height: 430px;
+}
+
+.radar-list,
+.action-stack,
+.comment-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.radar-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(120px, 0.8fr) auto;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid var(--line-dark);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.radar-row span,
+.action-stack span,
+.comment-list span,
+.comment-list small {
+  color: rgba(255, 248, 234, 0.58);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.radar-row strong,
+.action-stack strong,
+.comment-list strong {
+  display: block;
+  color: var(--paper);
+}
+
+.bar-track {
+  overflow: hidden;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 248, 234, 0.12);
+}
+
+.bar-track i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--mango), #ffe481);
+}
+
+.radar-row em {
+  color: var(--mango);
+  font-style: normal;
+  font-weight: 900;
+}
+
+.action-stack div {
+  display: grid;
+  gap: 9px;
+  border: 1px solid var(--line-dark);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.action-stack p {
+  margin: 0;
+  color: rgba(255, 248, 234, 0.62);
+  font-size: 0.92rem;
+  font-weight: 620;
+  line-height: 1.55;
+}
+
+.comment-board {
+  overflow: hidden;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.filter-row button {
+  min-height: 38px;
+  border: 1px solid var(--line-dark);
+  border-radius: 999px;
+  background: rgba(255, 248, 234, 0.07);
+  color: rgba(255, 248, 234, 0.72);
+  padding-inline: 14px;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.filter-row button.active {
+  border-color: rgba(242, 169, 0, 0.64);
+  background: rgba(242, 169, 0, 0.18);
+  color: var(--mango);
+}
+
+.comment-list article {
+  display: grid;
+  grid-template-columns: 0.8fr minmax(260px, 1.4fr) auto auto minmax(220px, 1fr);
+  align-items: center;
+  gap: 16px;
+  border: 1px solid var(--line-dark);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.comment-list p {
+  margin: 0;
+  color: rgba(255, 248, 234, 0.74);
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.comment-list em {
+  border-radius: 999px;
+  background: rgba(32, 95, 59, 0.34);
+  color: #91efb9;
+  padding: 8px 10px;
+  font-style: normal;
+  font-weight: 900;
+}
+
+.comment-list b {
+  color: var(--mango);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
 .mobile-action-bar {
   position: fixed;
   right: 12px;
@@ -884,24 +1176,40 @@ a {
   .hero-layout,
   .order-grid,
   .marketing-grid,
-  .subpage-hero-grid {
+  .subpage-hero-grid,
+  .feedback-layout,
+  .visit-grid,
+  .dashboard-two-col {
     grid-template-columns: 1fr;
   }
 
   .signature-grid,
   .tracker-metrics,
-  .menu-section-grid {
+  .menu-section-grid,
+  .pairing-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
   .proof-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .feedback-copy {
+    position: static;
+  }
+
+  .comment-list article {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (max-width: 680px) {
   .section-shell {
     width: min(100% - 24px, 1180px);
+  }
+
+  main {
+    padding-bottom: 74px;
   }
 
   .site-header .nav-order {
@@ -935,7 +1243,8 @@ a {
   .proof-grid,
   .tracker-metrics,
   .metric-grid,
-  .menu-section-grid {
+  .menu-section-grid,
+  .pairing-grid {
     grid-template-columns: 1fr;
   }
 
@@ -946,7 +1255,9 @@ a {
   .campaign-list div,
   .campaign-table article,
   .menu-list article,
-  .footer-grid {
+  .footer-grid,
+  .radar-row,
+  .comment-list article {
     grid-template-columns: 1fr;
   }
 
