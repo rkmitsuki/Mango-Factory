@@ -5,7 +5,7 @@ import Image from "next/image";
 import { MotionGroup, MotionItem, MotionLink } from "@/components/motion";
 import { menuSections, site, MenuSection } from "@/lib/site";
 
-const filters = ["All", "Burgers", "Drinks", "Comfort", "Snacks", "Add-On", "Popular", "Most Ordered", "Bowl"] as const;
+const filters = ["All", "Burgers", "Drinks", "Comfort", "Snacks", "Add-on", "Popular", "Top Picks", "Bowl"] as const;
 
 function toSectionId(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
@@ -70,7 +70,7 @@ export function MenuPageClient() {
             </p>
             <div className="action-row">
               <MotionLink className="button button-primary" href={site.orderUrl} target="_blank" rel="noreferrer">
-                Browse full menu on DoorDash
+                Order on DoorDash
               </MotionLink>
               <MotionLink className="button button-ghost" href="#menu-grid">
                 Jump to categories
@@ -146,7 +146,7 @@ export function MenuPageClient() {
             {filteredMenu.map((section) => (
               <article key={section.name} className="menu-section" id={toSectionId(section.name)}>
                 <div className="menu-section-heading">
-                  <p className="menu-section-eyebrow">Menu section</p>
+                  <p className="menu-section-eyebrow">Category</p>
                   <h2>{section.name}</h2>
                   <p className="menu-section-note">{section.note}</p>
                   <p className="menu-tags">{getActiveTags(section.items).join(" • ")}</p>

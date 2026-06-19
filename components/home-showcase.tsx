@@ -96,11 +96,9 @@ export function FeedbackCarousel() {
   return (
     <div className="feedback-carousel">
       <div className="feedback-head">
-        <p className="label">Guest voices</p>
-        <h2 className="display-section text-balance">What guests say.</h2>
-        <p>
-          Reviews consistently mention these items as the biggest crowd favorites.
-        </p>
+        <p className="label">Guest reviews</p>
+        <h2 className="display-section text-balance">What guests are saying.</h2>
+        <p>These are the items people mention the most in reviews.</p>
       </div>
 
       <div className="feedback-stage">
@@ -151,7 +149,7 @@ export function LocationMap() {
         <p className="label">Find us</p>
         <h2 className="display-section text-balance">Downtown San Jose, on Commercial St.</h2>
         <p>
-          We're at 326 Commercial St. Order ahead on DoorDash or swing by — kitchen opens at 11 AM daily.
+          Find us at 326 Commercial St. Order on DoorDash or come in. We open daily at 11 AM.
         </p>
         <div className="map-actions">
           <a className="button button-primary" href={site.orderUrl} target="_blank" rel="noreferrer">
@@ -162,7 +160,7 @@ export function LocationMap() {
           </a>
         </div>
         <div className="map-badges">
-          <span>11 AM pickup</span>
+          <span>Open daily at 11 AM</span>
           <span>Commercial St</span>
           <span>San Jose</span>
         </div>

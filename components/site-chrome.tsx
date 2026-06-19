@@ -27,7 +27,7 @@ export function SiteHeader() {
             <BrandMark />
             <span>
               <strong>{site.name}</strong>
-              <small>Burgers · mango · momos</small>
+              <small>Burgers · Mango Drinks · Momos</small>
             </span>
           </Link>
           <div className="nav-links">

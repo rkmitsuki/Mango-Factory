@@ -57,7 +57,7 @@ export default function Home() {
                 className="photo-grade"
               />
               <div className="hero-ticket">
-                <span>Most ordered</span>
+                <span>Top pick</span>
                 <strong>Desi Veg Burger</strong>
               </div>
             </div>
