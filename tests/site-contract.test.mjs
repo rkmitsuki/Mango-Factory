@@ -14,10 +14,10 @@ test("homepage is branded for Mango Factory with ordering and directions", async
   assert.match(page, /Burgers, mango drinks, momos/);
   assert.match(page, /paneer\s+burgers/i);
   assert.match(page, /momo noodle soup/i);
-  assert.match(showcase, /Built like a little decision engine/);
-  assert.match(showcase, /What people repeat after the first visit/);
+  assert.match(showcase, /Popular pairings/);
+  assert.match(showcase, /Most popular pairings/);
   assert.match(showcase, /Open in Maps/);
-  assert.match(showcase, /Pick up downtown or order ahead/);
+  assert.match(showcase, /Order ahead on DoorDash/);
 });
 
 test("content model includes actual DoorDash burger and savory favorites", async () => {

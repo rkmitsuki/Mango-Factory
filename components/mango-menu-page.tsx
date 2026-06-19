@@ -63,15 +63,14 @@ export function MenuPageClient() {
       <section className="subpage-hero">
         <MotionGroup className="section-shell subpage-hero-grid">
           <MotionItem>
-            <p className="label">Menu and order flow</p>
-            <h1 className="display-section text-balance">Order confidently with clear categories.</h1>
+            <p className="label">Menu</p>
+            <h1 className="display-section text-balance">Browse the full menu.</h1>
             <p>
-              Use this page to find savory, sweet, and add-on options quickly. You can search by
-              item name, narrow by type, and jump directly to the section you want.
+              Choose from burgers, drinks, and comfort bowls with category filters or search.
             </p>
             <div className="action-row">
               <MotionLink className="button button-primary" href={site.orderUrl} target="_blank" rel="noreferrer">
-                Order full menu on DoorDash
+                Browse full menu on DoorDash
               </MotionLink>
               <MotionLink className="button button-ghost" href="#menu-grid">
                 Jump to categories
@@ -134,20 +133,20 @@ export function MenuPageClient() {
         {filteredMenu.length === 0 ? (
           <article className="menu-empty">
             <h2>No matching items</h2>
-            <p>Try a shorter keyword or switch to a broader filter.</p>
+            <p>Try a shorter keyword or clear the filter.</p>
           </article>
         ) : (
           <>
             {hasQueryOrFilter ? (
               <p className="menu-result-note">
-                Showing {filteredMenu.flatMap((section) => section.items).length} item(s)
+                Showing {filteredMenu.flatMap((section) => section.items).length} matching items
               </p>
             ) : null}
 
             {filteredMenu.map((section) => (
               <article key={section.name} className="menu-section" id={toSectionId(section.name)}>
                 <div className="menu-section-heading">
-                  <p className="menu-section-eyebrow">Category</p>
+                  <p className="menu-section-eyebrow">Menu section</p>
                   <h2>{section.name}</h2>
                   <p className="menu-section-note">{section.note}</p>
                   <p className="menu-tags">{getActiveTags(section.items).join(" • ")}</p>
@@ -184,8 +183,8 @@ export function MenuPageClient() {
       <section className="home-section cream-band">
         <div className="section-shell section-heading">
           <div>
-            <p className="label">Most often ordered together</p>
-            <h2 className="display-section">If you are short on time, start with these.</h2>
+            <p className="label">Top favorites</p>
+            <h2 className="display-section">Try these popular items.</h2>
           </div>
           <MotionLink className="button button-secondary" href={site.orderUrl} target="_blank" rel="noreferrer">
             Open on DoorDash

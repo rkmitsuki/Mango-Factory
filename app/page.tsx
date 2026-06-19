@@ -86,7 +86,7 @@ export default function Home() {
         <div className="section-shell section-heading">
           <div>
             <p className="label">What people order</p>
-            <h2 className="display-section text-balance">Burgers first. Mango right behind.</h2>
+            <h2 className="display-section text-balance">Burgers, mango drinks, and cozy bowls are our favorites.</h2>
           </div>
           <Link className="button button-secondary" href="/menu">
             View menu

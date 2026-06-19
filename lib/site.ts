@@ -42,7 +42,7 @@ export const signatures = [
     category: "Review Favorite",
     price: "See menu",
     image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1200&q=85",
-    note: "Indo-Nepali momos in a rich broth. The order people reach for when it's cold or they want something filling.",
+    note: "Indo-Nepali momos in a rich broth—great when you want comforting, filling food.",
   },
 ];
 
@@ -70,7 +70,7 @@ export type MenuSection = {
 export const menuSections: MenuSection[] = [
   {
     name: "Desi Burgers",
-    note: "Savory anchors with the strongest repeat rate.",
+    note: "Savory burgers people come back for.",
     items: [
       {
         name: "Desi Veg Paneer Burger",
@@ -90,7 +90,7 @@ export const menuSections: MenuSection[] = [
   },
   {
     name: "Alphonso Mango Drinks",
-    note: "Cold, bright, and commonly ordered with savory mains.",
+    note: "Cold, bright mango drinks that pair well with mains.",
     items: [
       {
         name: "Sweet Mango Milkshake",
@@ -124,7 +124,7 @@ export const menuSections: MenuSection[] = [
   },
   {
     name: "Soup and Bowls",
-    note: "Lunch-leaning options for filling, no-fuss dining.",
+    note: "Lunch favorites that are filling and easy to share.",
     items: [
       {
         name: "Veg Momo Noodle Soup",
@@ -151,7 +151,7 @@ export const menuSections: MenuSection[] = [
   },
   {
     name: "Drinks, Boba, and Snacks",
-    note: "Pairs with most full meals and group orders.",
+    note: "Great with full meals and shared orders.",
     items: [
       {
         name: "Boba",
@@ -182,23 +182,23 @@ export const orderPairings = [
   {
     title: "Burger + mango shake",
     items: "Desi Veg Paneer Burger, Sweet Mango Milkshake",
-    note: "The heavy hitter: savory, spicy, then cold mango.",
+    note: "Savory burger and sweet mango shake in one order.",
   },
   {
     title: "Soup + spring rolls",
     items: "Veg Momo Noodle Soup, Veg Spring Rolls",
-    note: "Comfort order for lunch, rainy days, and late pickup.",
+    note: "Comfort combo for lunch, rainy days, and pickup.",
   },
   {
     title: "Fried rice + Alphonso juice",
     items: "Veg Fried Rice, Fresh Alphonso Mango Juice",
-    note: "Fast, filling, bright, and easy to reorder.",
+    note: "Fast and filling with a bright mango finish.",
   },
 ] as const;
 
 export const customerQuotes = [
   {
-    quote: "The paneer burger is the surprise order. Big portion, lots of flavor, and it travels well.",
+    quote: "The paneer burger is the standout order. Big portion, lots of flavor, and it travels well.",
     source: "Google review",
   },
   {
