@@ -85,11 +85,11 @@ export default function Home() {
       <section className="home-section cream-band" id="menu">
         <div className="section-shell section-heading">
           <div>
-            <p className="label">Menu highlights</p>
-            <h2 className="display-section text-balance">Try our top picks.</h2>
+            <p className="label">Signature picks</p>
+            <h2 className="display-section text-balance">Fan favorites from the kitchen.</h2>
           </div>
           <Link className="button button-secondary" href="/menu">
-            View menu
+            View full menu
           </Link>
         </div>
         <MotionGroup className="section-shell signature-grid">

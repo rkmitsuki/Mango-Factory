@@ -32,10 +32,10 @@ export function PairingCarousel() {
   return (
     <div className="carousel-shell">
       <div className="carousel-copy">
-        <p className="label">Popular pairings</p>
-        <h2 className="display-section text-balance">Most popular pairings.</h2>
+        <p className="label">Order pairings</p>
+        <h2 className="display-section text-balance">Most popular combinations.</h2>
         <p>
-          A lot of customers add a mango drink to a burger, then finish with a side or soup.
+          Guests often start with a burger or mango drink, then add a side or soup.
         </p>
         <div className="carousel-controls">
           <button type="button" onClick={() => setActive((active + orderPairings.length - 1) % orderPairings.length)}>
@@ -96,10 +96,10 @@ export function FeedbackCarousel() {
   return (
     <div className="feedback-carousel">
       <div className="feedback-head">
-        <p className="label">What people say</p>
-        <h2 className="display-section text-balance">Customer favorites.</h2>
+        <p className="label">Guest voices</p>
+        <h2 className="display-section text-balance">What guests say.</h2>
         <p>
-          Reviewers often mention paneer burgers, Alphonso juice, and momo soup as crowd favorites.
+          Reviews consistently mention these items as the biggest crowd favorites.
         </p>
       </div>
 
