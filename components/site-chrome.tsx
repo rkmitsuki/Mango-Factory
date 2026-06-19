@@ -65,8 +65,8 @@ export function SiteFooter() {
           <a href={site.phoneHref}>{site.phone}</a>
         </div>
         <div>
-          <strong>Marketing</strong>
-          <Link href="/marketing">Tracker</Link>
+          <strong>Growth</strong>
+          <Link href="/marketing">Dashboard</Link>
           <a href={site.orderUrl} target="_blank" rel="noreferrer">
             DoorDash
           </a>

@@ -97,13 +97,14 @@ export default function Home() {
         <div className="section-shell order-grid">
           <MotionGroup className="order-copy">
             <MotionItem>
-              <p className="label">Fast path</p>
-              <h2 className="display-section text-balance">Make the site sell the next visit.</h2>
+              <p className="label">Order rhythm</p>
+              <h2 className="display-section text-balance">Start savory. Finish mango.</h2>
             </MotionItem>
             <MotionItem>
               <p>
-                The site now sells the real order: savory burgers and comfort food
-                up front, then mango drinks, boba, bagels, and DoorDash pickup.
+                Guests can build the same kind of order people already make on
+                DoorDash: a desi burger or comfort bowl, a mango drink, then a snack
+                for later.
               </p>
             </MotionItem>
             <MotionItem className="step-list">
@@ -132,15 +133,15 @@ export default function Home() {
       <section className="home-section marketing-preview">
         <div className="section-shell marketing-grid">
           <div>
-            <p className="label">Marketing tracker</p>
-            <h2 className="display-section text-balance">Track burgers and mango drinks separately.</h2>
+            <p className="label">Growth dashboard</p>
+            <h2 className="display-section text-balance">Know what is driving orders.</h2>
             <p>
-              A lightweight dashboard for the marketing push: track burger campaigns,
-              mango drink campaigns, review-driven soup retargeting, and pickup demand.
+              A simple operating view for Mango Factory: burger demand, mango drink
+              clicks, review-led comfort food interest, and pickup momentum.
             </p>
             <div className="action-row">
               <MotionLink className="button button-primary" href="/marketing">
-                Open tracker <ArrowIcon />
+                Open dashboard <ArrowIcon />
               </MotionLink>
               <MotionLink className="button button-ghost-dark" href={site.orderUrl} target="_blank" rel="noreferrer">
                 DoorDash listing
@@ -149,8 +150,8 @@ export default function Home() {
           </div>
           <div className="dashboard-card">
             <div className="dashboard-topline">
-              <strong>Marketing tracker</strong>
-              <span>Live plan</span>
+              <strong>Growth dashboard</strong>
+              <span>Demo view</span>
             </div>
             <div className="metric-grid">
               {trackerStats.map(([label, value, trend]) => (

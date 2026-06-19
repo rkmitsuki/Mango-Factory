@@ -25,12 +25,22 @@ test("content model includes actual DoorDash burger and savory favorites", async
   assert.match(content, /Veg spring rolls/);
 });
 
-test("marketing tracker route exists and exposes campaign metrics", async () => {
+test("growth dashboard route exists and exposes client-safe business metrics", async () => {
   const routePath = new URL("../app/marketing/page.tsx", import.meta.url);
   assert.equal(existsSync(routePath), true);
 
   const page = await readFile(routePath, "utf8");
-  assert.match(page, /Marketing tracker/);
-  assert.match(page, /Campaigns/);
-  assert.match(page, /Leads/);
+  assert.match(page, /Growth dashboard/);
+  assert.match(page, /Offers/);
+  assert.match(page, /ordering signals/);
+  assert.doesNotMatch(page, /Firebase/);
+  assert.doesNotMatch(page, /marketing push/i);
+});
+
+test("homepage avoids internal sales-process copy", async () => {
+  const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+
+  assert.doesNotMatch(page, /sell the next visit/i);
+  assert.doesNotMatch(page, /site now sells/i);
+  assert.doesNotMatch(page, /marketing push/i);
 });

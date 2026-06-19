@@ -15,8 +15,8 @@ export default function MenuPage() {
           <MotionItem>
             <h1 className="display-section text-balance">Menu built around desi burgers and Alphonso mango.</h1>
             <p>
-              DoorDash shows the range clearly: burgers, mango drinks, Alphonso items,
-              boba, bagels, momo noodle soup, fried rice, and spring rolls.
+              Burgers, mango drinks, Alphonso items, boba, bagels, momo noodle soup,
+              fried rice, and spring rolls give Mango Factory more range than the name suggests.
             </p>
             <MotionLink className="button button-primary" href={site.orderUrl} target="_blank" rel="noreferrer">
               Order online

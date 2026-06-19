@@ -1,8 +1,8 @@
 import { campaigns, site, trackerStats } from "@/lib/site";
 
 export const metadata = {
-  title: "Marketing Tracker | Mango Factory",
-  description: "Lightweight Mango Factory campaign tracker for leads, campaigns, orders, and offers.",
+  title: "Growth Dashboard | Mango Factory",
+  description: "Mango Factory growth dashboard for demand, offers, orders, and channel performance.",
 };
 
 export default function MarketingPage() {
@@ -11,11 +11,11 @@ export default function MarketingPage() {
       <section className="section-shell tracker-shell">
         <div className="tracker-hero">
           <div>
-            <p className="label">Marketing tracker</p>
-            <h1 className="display-section text-balance">Campaign command center for Mango Factory growth.</h1>
+            <p className="label">Growth dashboard</p>
+            <h1 className="display-section text-balance">A clearer view of what customers want next.</h1>
             <p>
-              Track burger demand, Alphonso drink clicks, boba experiments, review-led
-              soup retargeting, and ordering signals. No Firebase required.
+              See burger demand, Alphonso drink interest, boba tests, review-led
+              comfort food momentum, and ordering signals in one place.
             </p>
           </div>
           <a className="button button-primary" href={site.orderUrl} target="_blank" rel="noreferrer">
@@ -23,7 +23,7 @@ export default function MarketingPage() {
           </a>
         </div>
 
-        <section className="tracker-metrics" aria-label="Marketing metrics">
+        <section className="tracker-metrics" aria-label="Growth metrics">
           {trackerStats.map(([label, value, trend, note]) => (
             <article key={label}>
               <span>{label}</span>
@@ -34,10 +34,10 @@ export default function MarketingPage() {
           ))}
         </section>
 
-        <section className="tracker-board" aria-label="Campaigns">
+        <section className="tracker-board" aria-label="Offers">
           <div className="tracker-board-head">
-            <h2>Campaigns</h2>
-            <span>June sprint</span>
+            <h2>Offers</h2>
+            <span>Demo sprint</span>
           </div>
           <div className="campaign-table">
             {campaigns.map((campaign) => (

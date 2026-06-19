@@ -12,7 +12,7 @@ export const site = {
 
 export const navItems = [
   ["Menu", "/menu"],
-  ["Marketing", "/marketing"],
+  ["Dashboard", "/marketing"],
   ["Directions", site.mapsUrl],
 ] as const;
 
@@ -78,10 +78,10 @@ export const menuSections = [
 ] as const;
 
 export const trackerStats = [
-  ["Leads", "184", "+22%", "From maps, DoorDash, and Instagram clicks"],
-  ["Orders", "71", "+15%", "Tracked burger, mango drink, and pickup conversions"],
-  ["Campaigns", "5", "live", "Burger, mango drink, soup, boba, retargeting"],
-  ["ROAS", "3.8x", "target", "Blended paid and organic estimate"],
+  ["Local interest", "184", "+22%", "Maps, DoorDash, and Instagram traffic"],
+  ["Tracked orders", "71", "+15%", "Burger, mango drink, and pickup conversions"],
+  ["Active offers", "5", "live", "Burger, mango drink, soup, boba, and lunch offers"],
+  ["Return", "3.8x", "target", "Blended paid and organic estimate"],
 ] as const;
 
 export const campaigns = [
@@ -114,7 +114,7 @@ export const campaigns = [
     status: "Active",
   },
   {
-    name: "Party tray retargeting",
+    name: "Boba and bagel test",
     channel: "Meta",
     spend: "$190",
     leads: 21,

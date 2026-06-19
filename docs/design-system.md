@@ -23,4 +23,4 @@ Premium quick-service site inspired by the cloned Komala Vilas and Chaat On Whee
 
 - `/`: customer homepage with desi burger hero, proof, DoorDash favorites, ordering flow, and marketing preview.
 - `/menu`: polished menu highlights for burgers, Alphonso mango drinks, boba, bagels, momo noodle soup, fried rice, and spring rolls.
-- `/marketing`: lightweight marketing tracker for burger campaigns, mango drink campaigns, leads, orders, and ROAS.
+- `/marketing`: lightweight growth dashboard for burger demand, mango drink interest, active offers, orders, and return.
