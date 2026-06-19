@@ -14,8 +14,8 @@ export default function MarketingPage() {
             <p className="label">Marketing tracker</p>
             <h1 className="display-section text-balance">Campaign command center for Mango Factory growth.</h1>
             <p>
-              Track local campaigns, leads, offers, and ordering signals while the
-              marketing push is running. No Firebase required.
+              Track burger demand, Alphonso drink clicks, boba experiments, review-led
+              soup retargeting, and ordering signals. No Firebase required.
             </p>
           </div>
           <a className="button button-primary" href={site.orderUrl} target="_blank" rel="noreferrer">

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { navItems, site } from "@/lib/site";
-import { MotionLink } from "./motion";
+import { MotionHeader, MotionLink } from "./motion";
 
 function ArrowIcon() {
   return (
@@ -20,27 +20,29 @@ export function BrandMark() {
 
 export function SiteHeader() {
   return (
-    <header className="site-header">
-      <nav className="section-shell nav-shell" aria-label="Primary navigation">
-        <Link href="/" className="brand-link" aria-label="Mango Factory home">
-          <BrandMark />
-          <span>
-            <strong>{site.name}</strong>
-            <small>San Jose dessert lab</small>
-          </span>
-        </Link>
-        <div className="nav-links">
-          {navItems.map(([label, href]) => (
-            <Link key={label} href={href}>
-              {label}
-            </Link>
-          ))}
-        </div>
-        <MotionLink className="button button-primary nav-order" href={site.orderUrl} target="_blank" rel="noreferrer">
-          Order online <ArrowIcon />
-        </MotionLink>
-      </nav>
-    </header>
+    <MotionHeader>
+      <header className="site-header">
+        <nav className="section-shell nav-shell" aria-label="Primary navigation">
+          <Link href="/" className="brand-link" aria-label="Mango Factory home">
+            <BrandMark />
+            <span>
+              <strong>{site.name}</strong>
+              <small>Burgers · mango · momos</small>
+            </span>
+          </Link>
+          <div className="nav-links">
+            {navItems.map(([label, href]) => (
+              <Link key={label} href={href}>
+                {label}
+              </Link>
+            ))}
+          </div>
+          <MotionLink className="button button-primary nav-order" href={site.orderUrl} target="_blank" rel="noreferrer">
+            Order online <ArrowIcon />
+          </MotionLink>
+        </nav>
+      </header>
+    </MotionHeader>
   );
 }
 

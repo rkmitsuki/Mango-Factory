@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MotionCard, MotionGroup, MotionItem, MotionLink } from "@/components/motion";
-import { campaigns, proof, signatures, site, trackerStats } from "@/lib/site";
+import { campaigns, menuSections, proof, signatures, site, trackerStats } from "@/lib/site";
 
 function ArrowIcon() {
   return (
@@ -18,13 +18,14 @@ export default function Home() {
         <div className="hero-grid-overlay" />
         <MotionGroup className="section-shell hero-layout">
           <div className="hero-copy">
-            <MotionItem>
-              <h1 className="display-hero text-balance">Mango drinks, boba, and dessert runs in San Jose.</h1>
+            <MotionItem variant="headline">
+              <h1 className="display-hero text-balance">Desi burgers meet Alphonso mango.</h1>
             </MotionItem>
             <MotionItem>
               <p className="hero-lede">
-                Mango Factory turns fruit, tea, cream, pearls, and bagels into glossy
-                late-afternoon cravings from 326 Commercial St, San Jose.
+                Mango Factory is not just drinks. The DoorDash favorites are paneer
+                burgers, sweet mango milkshakes, Alphonso juice, boba, momo noodle soup,
+                fried rice, and spring rolls from 326 Commercial St, San Jose.
               </p>
             </MotionItem>
             <MotionItem className="action-row">
@@ -36,11 +37,11 @@ export default function Home() {
               </MotionLink>
             </MotionItem>
           </div>
-          <MotionItem className="hero-visual-wrap">
+          <MotionItem className="hero-visual-wrap" variant="visual">
             <div className="hero-visual">
               <Image
-                src="/images/mango-hero.png"
-                alt="Mango Factory mango dessert cups with boba and fresh mango"
+                src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1600&q=92"
+                alt="Loaded vegetarian burger representing Mango Factory desi burger menu"
                 width={1400}
                 height={1000}
                 priority
@@ -48,8 +49,8 @@ export default function Home() {
                 className="photo-grade"
               />
               <div className="hero-ticket">
-                <span>Now serving</span>
-                <strong>Mango Dreams</strong>
+                <span>Most ordered</span>
+                <strong>Desi Veg Burger</strong>
               </div>
             </div>
           </MotionItem>
@@ -70,8 +71,8 @@ export default function Home() {
       <section className="home-section cream-band" id="menu">
         <div className="section-shell section-heading">
           <div>
-            <p className="label">Signatures</p>
-            <h2 className="display-section text-balance">A short menu built for mango cravings.</h2>
+            <p className="label">DoorDash favorites</p>
+            <h2 className="display-section text-balance">Burgers first. Mango right behind.</h2>
           </div>
           <Link className="button button-secondary" href="/menu">
             View menu
@@ -101,13 +102,12 @@ export default function Home() {
             </MotionItem>
             <MotionItem>
               <p>
-                The homepage is direct: show the mango product, make ordering obvious,
-                then move guests to menu, directions, or party tray planning without
-                burying the action.
+                The site now sells the real order: savory burgers and comfort food
+                up front, then mango drinks, boba, bagels, and DoorDash pickup.
               </p>
             </MotionItem>
             <MotionItem className="step-list">
-              {["Pick a craving", "Order pickup or delivery", "Send directions to the group"].map((step, index) => (
+              {["Start with the burger", "Add Alphonso mango", "Order pickup on DoorDash"].map((step, index) => (
                 <div key={step}>
                   <span>{String(index + 1).padStart(2, "0")}</span>
                   <strong>{step}</strong>
@@ -116,14 +116,15 @@ export default function Home() {
             </MotionItem>
           </MotionGroup>
           <MotionItem>
-            <Image
-              src="/images/mango-tray.png"
-              alt="Mango Factory party tray with mango drinks and dessert cups"
-              width={1100}
-              height={850}
-              quality={92}
-              className="photo-panel photo-grade"
-            />
+            <div className="menu-stack-panel">
+              {menuSections.map((section) => (
+                <article key={section.name}>
+                  <span>{section.name}</span>
+                  <strong>{section.note}</strong>
+                  <p>{section.items.join(" · ")}</p>
+                </article>
+              ))}
+            </div>
           </MotionItem>
         </div>
       </section>
@@ -132,10 +133,10 @@ export default function Home() {
         <div className="section-shell marketing-grid">
           <div>
             <p className="label">Marketing tracker</p>
-            <h2 className="display-section text-balance">Campaigns, leads, and offers in one place.</h2>
+            <h2 className="display-section text-balance">Track burgers and mango drinks separately.</h2>
             <p>
-              A lightweight dashboard for the marketing push: launch campaigns, track
-              leads, watch orders, and see which Mango Factory offer is earning attention.
+              A lightweight dashboard for the marketing push: track burger campaigns,
+              mango drink campaigns, review-driven soup retargeting, and pickup demand.
             </p>
             <div className="action-row">
               <MotionLink className="button button-primary" href="/marketing">
