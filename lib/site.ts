@@ -53,28 +53,106 @@ export const proof = [
   ["11 AM", "opens daily"],
 ] as const;
 
-export const menuSections = [
+export type MenuItem = {
+  name: string;
+  description: string;
+  price: string;
+};
+
+export type MenuSection = {
+  name: string;
+  note: string;
+  items: MenuItem[];
+};
+
+export const menuSections: MenuSection[] = [
   {
-    name: "Burgers",
-    note: "The savory anchor customers keep talking about.",
-    items: ["Desi Veg Paneer Burger", "Desi Veg Cheese Burger"],
+    name: "Desi Burgers",
+    note: "The savory core. These drive the highest reorder rate.",
+    items: [
+      {
+        name: "Desi Veg Paneer Burger",
+        description:
+          "House-spiced paneer, cheddar, roasted onion, and house chutney on a toasted brioche bun.",
+        price: "$16.99",
+      },
+      {
+        name: "Desi Veg Cheese Burger",
+        description:
+          "Melted Indian-style cheese blend, crunchy lettuce, tomato, pickled onion, and tangy sauce.",
+        price: "$17.99",
+      },
+    ],
   },
   {
-    name: "Mango Drinks",
-    note: "Alphonso mango shakes, juice, slices, and sweet mango drinks.",
-    items: ["Sweet mango milkshake", "Fresh Alphonso milkshake 16 oz", "Fresh Alphonso mango juice", "Alphonso mango slice"],
+    name: "Alphonso Mango Drinks",
+    note: "Cold, rich, and made for first bites and long waits.",
+    items: [
+      {
+        name: "Sweet Mango Milkshake",
+        description: "Creamy mango shake blended with ice cream and a lightly spiced milk base.",
+        price: "$10.00",
+      },
+      {
+        name: "Fresh Alphonso Milkshake 16 oz",
+        description: "Extra-thick Alphonso blend served in a tall cup for carryout.",
+        price: "$11.99",
+      },
+      {
+        name: "Fresh Alphonso Mango Juice",
+        description: "Straight juice, no foam, no over-dilution, served chilled.",
+        price: "$11.99",
+      },
+      {
+        name: "Alphonso Mango Slice",
+        description: "Fresh mango wedges in a shared cup.",
+        price: "$6.50",
+      },
+    ],
   },
   {
-    name: "Comfort Food",
-    note: "The review-driven side of the menu.",
-    items: ["Veg momo noodle soup", "Veg fried rice", "Veg spring rolls"],
+    name: "Soup and Bowls",
+    note: "Hearty sides and bowl orders people add to every lunch order.",
+    items: [
+      {
+        name: "Veg Momo Noodle Soup",
+        description: "Brothy noodle soup with vegetable momos, coriander, scallion, and soft egg noodles.",
+        price: "$14.00",
+      },
+      {
+        name: "Veg Fried Rice",
+        description: "Fragrant rice with mixed vegetables, egg options available by request.",
+        price: "$12.50",
+      },
+      {
+        name: "Veg Spring Rolls",
+        description: "Crispy rolls with mildly spiced veggie filling and sweet chili dipping sauce.",
+        price: "$8.50",
+      },
+    ],
   },
   {
-    name: "Boba & Bagels",
-    note: "DoorDash categories for snacks and repeat orders.",
-    items: ["Boba", "Magical Bagel", "Dreamy Drinks"],
+    name: "Drinks, Boba, and Snacks",
+    note: "Quick add-ons that pair well with every order.",
+    items: [
+      {
+        name: "Boba",
+        description: "Cold tea-based drink with chewy tapioca pearls.",
+        price: "$6.00",
+      },
+      {
+        name: "Magical Bagel",
+        description: "Dense bagel cut with honeyed glaze and seasonal topping blend.",
+        price: "$7.50",
+      },
+      {
+        name: "Dreamy Drinks",
+        description: "Seasonal house drinks not listed on every platform; ask for today's board.",
+        price: "Ask Store",
+      },
+    ],
   },
-] as const;
+];
 
 export const orderPairings = [
   {
