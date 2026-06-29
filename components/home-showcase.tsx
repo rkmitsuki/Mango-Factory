@@ -14,6 +14,18 @@ function ArrowIcon() {
   );
 }
 
+function CarouselArrowIcon({ direction }: { direction: "left" | "right" }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className={`icon carousel-arrow-icon${direction === "left" ? " is-left" : ""}`}
+    >
+      <path d="M5 12h13m-5-5 5 5-5 5" />
+    </svg>
+  );
+}
+
 export function PairingCarousel() {
   const reduce = useReducedMotion();
   const [active, setActive] = useState(0);
@@ -28,6 +40,8 @@ export function PairingCarousel() {
   }, [reduce]);
 
   const pairing = orderPairings[active];
+  const showPreviousPairing = () => setActive((value) => (value + orderPairings.length - 1) % orderPairings.length);
+  const showNextPairing = () => setActive((value) => (value + 1) % orderPairings.length);
 
   return (
     <div className="carousel-shell">
@@ -37,14 +51,6 @@ export function PairingCarousel() {
         <p>
           Guests often start with a burger or mango drink, then add a side or soup.
         </p>
-        <div className="carousel-controls">
-          <button type="button" onClick={() => setActive((active + orderPairings.length - 1) % orderPairings.length)}>
-            Prev
-          </button>
-          <button type="button" onClick={() => setActive((active + 1) % orderPairings.length)}>
-            Next
-          </button>
-        </div>
       </div>
 
       <div className="carousel-stage">
@@ -60,16 +66,26 @@ export function PairingCarousel() {
             <span>{pairing.title}</span>
             <strong>{pairing.items}</strong>
             <p>{pairing.note}</p>
-            <div className="carousel-dots" aria-label="Combo carousel">
-              {orderPairings.map((item, index) => (
-                <button
-                  aria-label={`Show ${item.title}`}
-                  className={index === active ? "active" : ""}
-                  key={item.title}
-                  onClick={() => setActive(index)}
-                  type="button"
-                />
-              ))}
+            <div className="carousel-card-footer">
+              <div className="carousel-dots" aria-label="Combo carousel">
+                {orderPairings.map((item, index) => (
+                  <button
+                    aria-label={`Show ${item.title}`}
+                    className={index === active ? "active" : ""}
+                    key={item.title}
+                    onClick={() => setActive(index)}
+                    type="button"
+                  />
+                ))}
+              </div>
+              <div className="card-nav" aria-label="Pairing navigation">
+                <button aria-label="Show previous pairing" onClick={showPreviousPairing} type="button">
+                  <CarouselArrowIcon direction="left" />
+                </button>
+                <button aria-label="Show next pairing" onClick={showNextPairing} type="button">
+                  <CarouselArrowIcon direction="right" />
+                </button>
+              </div>
             </div>
           </motion.article>
         </AnimatePresence>
@@ -92,6 +108,8 @@ export function FeedbackCarousel() {
   }, [reduce]);
 
   const quote = customerQuotes[active];
+  const showPreviousReview = () => setActive((value) => (value + customerQuotes.length - 1) % customerQuotes.length);
+  const showNextReview = () => setActive((value) => (value + 1) % customerQuotes.length);
 
   return (
     <div className="feedback-carousel">
@@ -114,17 +132,27 @@ export function FeedbackCarousel() {
             <div className="feedback-quote-mark">&ldquo;</div>
             <p>{quote.quote}</p>
             <div className="feedback-meta">
-              <span>{quote.source}</span>
-              <div className="feedback-dots">
-                {customerQuotes.map((item, index) => (
-                  <button
-                    aria-label={`Show feedback from ${item.source}`}
-                    className={index === active ? "active" : ""}
-                    key={item.quote}
-                    onClick={() => setActive(index)}
-                    type="button"
-                  />
-                ))}
+              <div className="feedback-meta-main">
+                <span>{quote.source}</span>
+                <div className="feedback-dots">
+                  {customerQuotes.map((item, index) => (
+                    <button
+                      aria-label={`Show feedback from ${item.source}`}
+                      className={index === active ? "active" : ""}
+                      key={item.quote}
+                      onClick={() => setActive(index)}
+                      type="button"
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className="card-nav" aria-label="Review navigation">
+                <button aria-label="Show previous review" onClick={showPreviousReview} type="button">
+                  <CarouselArrowIcon direction="left" />
+                </button>
+                <button aria-label="Show next review" onClick={showNextReview} type="button">
+                  <CarouselArrowIcon direction="right" />
+                </button>
               </div>
             </div>
           </motion.article>

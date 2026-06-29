@@ -67,6 +67,7 @@ export function SiteFooter() {
         <div>
           <strong>Order</strong>
           <Link href="/menu">Menu</Link>
+          <Link href="/about">About</Link>
           <a href={site.orderUrl} target="_blank" rel="noreferrer">
             DoorDash
           </a>

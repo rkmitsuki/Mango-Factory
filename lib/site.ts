@@ -1,8 +1,13 @@
+import { fallbackMenuSections, type MenuItem, type MenuSection } from "@/lib/menu-content";
+
+export type { MenuContentDocument, MenuItem, MenuSection } from "@/lib/menu-content";
+
 export const site = {
   name: "Mango Factory",
   shortName: "MF",
   tagline: "Alphonso mango drinks, desi burgers, and Indo-Nepali comfort food.",
   address: "326 Commercial St, San Jose, CA",
+  hours: "Open daily at 11 AM",
   phone: "(408) 555-0198",
   phoneHref: "tel:+14085550198",
   orderUrl: "https://www.doordash.com/store/mango-factory-san-jose-33771065/",
@@ -12,39 +17,62 @@ export const site = {
 
 export const navItems = [
   ["Menu", "/menu"],
+  ["About", "/about"],
   ["Directions", site.mapsUrl],
 ] as const;
 
-export const signatures = [
+const menuItemsByName = new Map(
+  fallbackMenuSections.flatMap((section) => section.items).map((item) => [item.name, item] as const),
+);
+
+function getMenuItem(name: string): MenuItem {
+  const item = menuItemsByName.get(name);
+
+  if (!item) {
+    throw new Error(`Missing signature item in menu content: ${name}`);
+  }
+
+  return item;
+}
+
+function getSignatureImage(item: MenuItem): string {
+  return item.image.replace("w=900", "w=1200");
+}
+
+const signatureContent = [
   {
     name: "Desi Veg Paneer Burger",
     category: "Top Pick",
-    price: "$16.99",
-    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=85",
     note: "A loaded vegetarian burger built around paneer, cheese, chutney, and a bold savory flavor.",
   },
   {
     name: "Sweet Mango Milkshake",
     category: "Mango Milkshake",
-    price: "$10.00",
-    image: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=1200&q=85",
     note: "Thick, cold, and all mango. No added sugar.",
   },
   {
     name: "Fresh Alphonso Mango Juice",
     category: "Mango Drink",
-    price: "$11.99",
-    image: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=1200&q=85",
     note: "Pure Alphonso, no extra sweeteners.",
   },
   {
     name: "Veg Momo Noodle Soup",
     category: "Guest Favorite",
-    price: "See menu",
-    image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1200&q=85",
     note: "Indo-Nepali momos in a rich broth—great when you want comforting, filling food.",
   },
-];
+] as const;
+
+export const signatures = signatureContent.map(({ name, category, note }) => {
+  const item = getMenuItem(name);
+
+  return {
+    name: item.name,
+    category,
+    price: item.price,
+    image: getSignatureImage(item),
+    note,
+  };
+});
 
 export const proof = [
   ["4.9", "Google rating"],
@@ -53,130 +81,7 @@ export const proof = [
   ["11 AM", "opens daily"],
 ] as const;
 
-export type MenuItem = {
-  name: string;
-  description: string;
-  price: string;
-  tags: string[];
-  image: string;
-};
-
-export type MenuSection = {
-  name: string;
-  note: string;
-  items: MenuItem[];
-};
-
-export const menuSections: MenuSection[] = [
-  {
-    name: "Desi Burgers",
-    note: "Savory burgers people come back for.",
-    items: [
-      {
-        name: "Desi Veg Paneer Burger",
-        description: "Paneer, cheddar, roasted onion, and house chutney on a brioche bun.",
-        price: "$16.99",
-        tags: ["Burgers", "Popular", "Top Picks"],
-        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85",
-      },
-      {
-        name: "Desi Veg Cheese Burger",
-        description: "Indian-spiced cheese blend, lettuce, tomato, pickled onion, and smoky-sweet sauce.",
-        price: "$17.99",
-        tags: ["Burgers", "Popular"],
-        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85",
-      },
-    ],
-  },
-  {
-    name: "Alphonso Mango Drinks",
-    note: "Cold, bright mango drinks that pair well with mains.",
-    items: [
-      {
-        name: "Sweet Mango Milkshake",
-        description: "Creamy mango shake blended with ice cream and lightly spiced dairy.",
-        price: "$10.00",
-        tags: ["Drinks", "Popular", "Top Picks"],
-        image: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=900&q=85",
-      },
-      {
-        name: "Fresh Alphonso Milkshake 16 oz",
-        description: "Richer Alphonso blend in a larger cup for carryout.",
-        price: "$11.99",
-        tags: ["Drinks", "Popular"],
-        image: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=900&q=85",
-      },
-      {
-        name: "Fresh Alphonso Mango Juice",
-        description: "Straight Alphonso juice, chilled and unsweetened.",
-        price: "$11.99",
-        tags: ["Drinks", "Top Picks"],
-        image: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=900&q=85",
-      },
-      {
-        name: "Alphonso Mango Slice",
-        description: "Sweet mango wedges served chilled in a shared cup.",
-        price: "$6.50",
-        tags: ["Drinks"],
-        image: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=900&q=85",
-      },
-    ],
-  },
-  {
-    name: "Soup and Bowls",
-    note: "Lunch favorites that are filling and easy to share.",
-    items: [
-      {
-        name: "Veg Momo Noodle Soup",
-        description: "Vegetable momos, soft noodles, and broth with coriander and scallion.",
-        price: "$14.00",
-        tags: ["Comfort", "Popular", "Bowl"],
-        image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=900&q=85",
-      },
-      {
-        name: "Veg Fried Rice",
-        description: "Toasted rice with vegetables and light house-seasoned sauce.",
-        price: "$12.50",
-        tags: ["Comfort", "Bowl"],
-        image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=85",
-      },
-      {
-        name: "Veg Spring Rolls",
-        description: "Crispy rolls with mild veggie filling and house sweet-chili dip.",
-        price: "$8.50",
-        tags: ["Comfort", "Add-on"],
-        image: "https://images.unsplash.com/photo-1596662951482-f5f6d6d0e0c1?auto=format&fit=crop&w=900&q=85",
-      },
-    ],
-  },
-  {
-    name: "Drinks, Boba, and Snacks",
-    note: "Great with full meals and shared orders.",
-    items: [
-      {
-        name: "Boba",
-        description: "Iced tea with chewy tapioca pearls.",
-        price: "$6.00",
-        tags: ["Snacks", "Add-on"],
-        image: "https://images.unsplash.com/photo-1610889556528-9a770e9fd1e2?auto=format&fit=crop&w=900&q=85",
-      },
-      {
-        name: "Magical Bagel",
-        description: "Dense bagel topped with a seasonal glaze.",
-        price: "$7.50",
-        tags: ["Snacks", "Add-on"],
-        image: "https://images.unsplash.com/photo-1604908176997-125fddc0f2f8?auto=format&fit=crop&w=900&q=85",
-      },
-      {
-        name: "House Drink Selection",
-        description: "Seasonal house drinks; check the counter for today's options.",
-        price: "Ask at counter",
-        tags: ["Drinks", "Add-on"],
-        image: "https://images.unsplash.com/photo-1563903532903-4e1ca7c6cb7e?auto=format&fit=crop&w=900&q=85",
-      },
-    ],
-  },
-];
+export const menuSections: MenuSection[] = fallbackMenuSections;
 
 export const orderPairings = [
   {

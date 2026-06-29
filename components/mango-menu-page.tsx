@@ -3,7 +3,9 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import { MotionGroup, MotionItem, MotionLink } from "@/components/motion";
-import { menuSections, site, MenuSection } from "@/lib/site";
+import { type MenuSection } from "@/lib/menu-content";
+import { site } from "@/lib/site";
+import { useLiveMenuSections } from "@/lib/use-live-menu-sections";
 
 const filters = ["All", "Burgers", "Drinks", "Comfort", "Snacks", "Add-on", "Popular", "Top Picks", "Bowl"] as const;
 
@@ -22,6 +24,8 @@ function getActiveTags(sectionItems: MenuSection["items"]) {
 }
 
 export function MenuPageClient() {
+  const menuSections = useLiveMenuSections();
+
   const allFilters = useMemo(() => {
     const discovered = new Set<(typeof filters)[number]>();
     menuSections.forEach((section) => {
@@ -34,7 +38,7 @@ export function MenuPageClient() {
       });
     });
     return ["All", ...Array.from(discovered)] as (typeof filters)[number][];
-  }, []);
+  }, [menuSections]);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState<(typeof filters)[number]>("All");
@@ -54,7 +58,7 @@ export function MenuPageClient() {
         return { ...section, items };
       })
       .filter((section) => section.items.length > 0);
-  }, [activeFilter, searchQuery]);
+  }, [activeFilter, menuSections, searchQuery]);
 
   const hasQueryOrFilter = searchQuery.trim().length > 0 || activeFilter !== "All";
 
