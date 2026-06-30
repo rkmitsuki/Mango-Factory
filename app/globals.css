@@ -2548,7 +2548,7 @@ a {
 
 .scroll-story-media {
   position: sticky;
-  top: 20vh;
+  top: 5rem;
 }
 
 .scroll-story-media-frame {
@@ -2556,6 +2556,7 @@ a {
   border-radius: 16px;
   overflow: hidden;
   aspect-ratio: 3 / 4;
+  max-height: calc(100svh - 5rem - 2rem);
   box-shadow: var(--shadow-soft);
   background: var(--night);
 }
