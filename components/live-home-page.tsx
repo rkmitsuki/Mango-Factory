@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { MotionCard, MotionGroup, MotionItem, MotionLink } from "@/components/motion";
+import { Marquee, MotionCard, MotionGroup, MotionItem, MotionLink } from "@/components/motion";
 import { FeedbackCarousel, LocationMap, PairingCarousel } from "@/components/home-showcase";
 import { getSignatureItems } from "@/lib/menu-content";
 import { proof, site } from "@/lib/site";
@@ -97,6 +97,11 @@ export function LiveHomePage() {
           ))}
         </div>
       </section>
+
+      <Marquee
+        items={["DESI BURGERS", "ALPHONSO MANGO", "MOMO NOODLE SOUP", "SAN JOSE, CA", "ORDER ON DOORDASH", "BOBA + BAGELS"]}
+        speed={28}
+      />
 
       <section className="home-section pairing-section">
         <div className="section-shell">

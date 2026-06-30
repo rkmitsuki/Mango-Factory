@@ -1,12 +1,14 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
 import { MotionGroup, MotionItem, MotionLink } from "@/components/motion";
 import { type MenuSection } from "@/lib/menu-content";
 import { site } from "@/lib/site";
 import { useLiveMenuSections } from "@/lib/use-live-menu-sections";
 
+const EASE_OUT = [0.16, 1, 0.3, 1] as const;
 const filters = ["All", "Burgers", "Drinks", "Comfort", "Snacks", "Add-on", "Popular", "Top Picks", "Bowl"] as const;
 
 function toSectionId(name: string) {
@@ -42,10 +44,10 @@ export function MenuPageClient() {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState<(typeof filters)[number]>("All");
+  const [activeSection, setActiveSection] = useState("");
 
   const filteredMenu = useMemo(() => {
     const normalizedQuery = searchQuery.trim().toLowerCase();
-
     return menuSections
       .map((section) => {
         const items = section.items.filter((item) => {
@@ -54,13 +56,31 @@ export function MenuPageClient() {
           const matchesQuery = !normalizedQuery || target.includes(normalizedQuery);
           return matchesFilter && matchesQuery;
         });
-
         return { ...section, items };
       })
       .filter((section) => section.items.length > 0);
   }, [activeFilter, menuSections, searchQuery]);
 
   const hasQueryOrFilter = searchQuery.trim().length > 0 || activeFilter !== "All";
+
+  useEffect(() => {
+    if (hasQueryOrFilter) {
+      setActiveSection("");
+      return;
+    }
+
+    const elements = document.querySelectorAll<HTMLElement>(".menu-section[id]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { rootMargin: "-20% 0px -55% 0px", threshold: 0 },
+    );
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [filteredMenu, hasQueryOrFilter]);
 
   return (
     <main className="subpage-main">
@@ -97,11 +117,18 @@ export function MenuPageClient() {
       <section className="menu-section-band">
         <div className="section-shell menu-toolbar-shell">
           <nav className="menu-category-nav" aria-label="Menu categories">
-            {menuSections.map((section) => (
-              <a key={section.name} href={`#${toSectionId(section.name)}`}>
-                {section.name}
-              </a>
-            ))}
+            {menuSections.map((section) => {
+              const id = toSectionId(section.name);
+              return (
+                <a
+                  key={section.name}
+                  href={`#${id}`}
+                  className={activeSection === id ? "is-active" : undefined}
+                >
+                  {section.name}
+                </a>
+              );
+            })}
           </nav>
 
           <div className="menu-tools">
@@ -135,55 +162,88 @@ export function MenuPageClient() {
 
       <section id="menu-grid" className="section-shell menu-sections">
         {filteredMenu.length === 0 ? (
-          <article className="menu-empty">
+          <motion.article
+            className="menu-empty"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: EASE_OUT }}
+          >
             <h2>No matching items</h2>
             <p>Try a shorter keyword or clear the filter.</p>
-          </article>
+          </motion.article>
         ) : (
           <>
             {hasQueryOrFilter ? (
-              <p className="menu-result-note">
+              <motion.p
+                className="menu-result-note"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              >
                 Showing {filteredMenu.flatMap((section) => section.items).length} matching items
-              </p>
+              </motion.p>
             ) : null}
 
-            {filteredMenu.map((section) => (
-              <article key={section.name} className="menu-section" id={toSectionId(section.name)}>
-                <div className="menu-section-heading">
-                  <p className="menu-section-eyebrow">Category</p>
-                  <h2>{section.name}</h2>
-                  <p className="menu-section-note">{section.note}</p>
-                  <p className="menu-tags">{getActiveTags(section.items).join(" • ")}</p>
-                </div>
+            <AnimatePresence mode="popLayout">
+              {filteredMenu.map((section) => (
+                <motion.article
+                  key={section.name}
+                  layout
+                  className="menu-section"
+                  id={toSectionId(section.name)}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12, scale: 0.98 }}
+                  transition={{ duration: 0.38, ease: EASE_OUT }}
+                >
+                  <div className="menu-section-heading">
+                    <p className="menu-section-eyebrow">Category</p>
+                    <h2>{section.name}</h2>
+                    <p className="menu-section-note">{section.note}</p>
+                    <p className="menu-tags">{getActiveTags(section.items).join(" • ")}</p>
+                  </div>
 
-                <div className="menu-item-card-grid">
-                  {section.items.map((item) => (
-                    <article key={`${section.name}-${item.name}`} className="menu-item-card">
-                      <Image
-                        src={item.image}
-                        alt={item.name}
-                        width={420}
-                        height={300}
-                        quality={85}
-                        className="photo-grade"
-                      />
-                      <div>
-                        <div className="menu-item-topline">
-                          <h3>{item.name}</h3>
-                          <strong>{item.price}</strong>
-                        </div>
-                        <p>{item.description}</p>
-                        <p className="menu-item-tags">{item.tags.join(" • ")}</p>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </article>
-            ))}
+                  <div className="menu-item-card-grid">
+                    <AnimatePresence mode="popLayout">
+                      {section.items.map((item) => (
+                        <motion.div
+                          key={`${section.name}-${item.name}`}
+                          layout
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.94 }}
+                          transition={{ duration: 0.32, ease: EASE_OUT }}
+                          className="menu-item-card"
+                          whileHover={{ y: -4, boxShadow: "0 16px 48px rgba(23,16,10,0.14)" }}
+                        >
+                          <div className="menu-item-card-img-wrap">
+                            <Image
+                              src={item.image}
+                              alt={item.name}
+                              width={420}
+                              height={300}
+                              quality={85}
+                              className="photo-grade"
+                            />
+                          </div>
+                          <div>
+                            <div className="menu-item-topline">
+                              <h3>{item.name}</h3>
+                              <strong>{item.price}</strong>
+                            </div>
+                            <p>{item.description}</p>
+                            <p className="menu-item-tags">{item.tags.join(" • ")}</p>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </AnimatePresence>
+                  </div>
+                </motion.article>
+              ))}
+            </AnimatePresence>
           </>
         )}
       </section>
-
     </main>
   );
 }
