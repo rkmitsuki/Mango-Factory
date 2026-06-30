@@ -15,8 +15,8 @@ const storyPanels: StoryPanel[] = [
     eyebrow: "01 — Source",
     title: "It starts with Alphonso.",
     body: "Alphonso mango is the variety chefs argue over — short season, high sugar, a smell that fills the room before you cut into it. Everything on the Mango Factory menu, sweet or savory, is built around what that fruit can do.",
-    image: "https://images.unsplash.com/photo-1556392190-1719f2755322?auto=format&fit=crop&w=1400&q=85",
-    alt: "Green mangoes ripening on the tree",
+    image: "https://images.unsplash.com/photo-1544531480-9eadeb3c8f41?auto=format&fit=crop&w=1400&q=85",
+    alt: "Ripe Alphonso mango close-up",
   },
   {
     id: "harvest",
