@@ -2471,7 +2471,7 @@ a {
 .about-hero-content {
   position: relative;
   z-index: 2;
-  padding-block-start: 128px;
+  padding-block-start: 72px;
 }
 
 .about-hero-label {
@@ -2480,7 +2480,7 @@ a {
 
 .about-hero-title {
   color: var(--paper);
-  margin: 12px 0 20px;
+  margin: 8px 0 12px;
   max-width: 16ch;
   line-height: 1.08;
 }
@@ -2496,8 +2496,8 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 6px 24px;
-  margin-top: 36px;
-  padding: 22px 26px;
+  margin-top: 20px;
+  padding: 18px 24px;
   background: rgba(255, 248, 234, 0.08);
   border: 1px solid rgba(255, 248, 234, 0.14);
   border-radius: 12px;
