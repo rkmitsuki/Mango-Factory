@@ -21,9 +21,9 @@ const signatureCopyByName = {
     category: "Mango Drink",
     note: "Pure Alphonso, no extra sweeteners.",
   },
-  "Veg Momo Noodle Soup": {
-    category: "Guest Favorite",
-    note: "Indo-Nepali momos in a rich broth-great when you want comforting, filling food.",
+  "Alphonso Mango Cheesecake": {
+    category: "Homemade",
+    note: "Silky mango cheesecake on a soft biscuit base — made in-house.",
   },
 } as const;
 
@@ -46,13 +46,13 @@ export function LiveHomePage() {
         <MotionGroup className="section-shell hero-layout">
           <div className="hero-copy">
             <MotionItem variant="headline">
-              <h1 className="display-hero text-balance">Burgers, mango drinks, momos.</h1>
+              <h1 className="display-hero text-balance">Fresh Alphonso mango, done daily.</h1>
             </MotionItem>
             <MotionItem>
               <p className="hero-lede">
-                Mango Factory serves Desi Veg Paneer Burgers, Alphonso mango juice,
-                sweet mango milkshakes, boba, momo noodle soup, fried rice, and spring
-                rolls from 326 Commercial St in San Jose.
+                Cold-pressed Alphonso mango juice and shakes, desi paneer burgers, and
+                homemade mango sweets — blended, stacked, and made fresh to order at
+                326 Commercial St in San Jose.
               </p>
             </MotionItem>
             <MotionItem className="action-row">
@@ -101,9 +101,42 @@ export function LiveHomePage() {
       </section>
 
       <Marquee
-        items={["DESI BURGERS", "ALPHONSO MANGO", "MOMO NOODLE SOUP", "SAN JOSE, CA", "ORDER ON DOORDASH", "BOBA + BAGELS"]}
+        items={["FRESH ALPHONSO MANGO", "DESI BURGERS", "PRESSED DAILY", "HOMEMADE SWEETS", "NO ADDED SUGAR", "SAN JOSE, CA"]}
         speed={28}
       />
+
+      <section className="home-section ethos-section">
+        <Reveal className="section-shell ethos-head">
+          <p className="label">What makes it ours</p>
+          <h2 className="display-section text-balance">Fresh fruit, made by hand.</h2>
+        </Reveal>
+        <div className="section-shell ethos-grid">
+          <Reveal className="ethos-item">
+            <span className="ethos-num">01</span>
+            <h3>Fresh, always</h3>
+            <p>
+              Juices are cold-pressed and shakes are blended to order — nothing sits,
+              nothing comes from concentrate. You taste the fruit, not a mix.
+            </p>
+          </Reveal>
+          <Reveal className="ethos-item" delay={0.1}>
+            <span className="ethos-num">02</span>
+            <h3>Pure Alphonso mango</h3>
+            <p>
+              The king of mangoes: a short season, deep sweetness, and a perfume you
+              catch before the first sip. Every drink and sweet is built on it.
+            </p>
+          </Reveal>
+          <Reveal className="ethos-item" delay={0.2}>
+            <span className="ethos-num">03</span>
+            <h3>Homemade</h3>
+            <p>
+              Mango cream cheese, cheesecake, and chutneys are made in our own kitchen —
+              small batches from scratch, never off a supplier&apos;s shelf.
+            </p>
+          </Reveal>
+        </div>
+      </section>
 
       <section className="home-section pairing-section">
         <Reveal className="section-shell">

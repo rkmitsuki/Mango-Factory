@@ -22,10 +22,10 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Mango Factory | San Jose Desi Burgers and Mango Drinks",
   description:
-    "Mango Factory serves Desi Veg Paneer Burgers, Alphonso mango drinks, boba, bagels, momo noodle soup, fried rice, and spring rolls from 326 Commercial St in San Jose.",
+    "Mango Factory serves fresh Alphonso mango drinks, desi paneer burgers, homemade mango cheesecake, and bagels from 326 Commercial St in San Jose.",
   openGraph: {
     title: "Mango Factory",
-    description: "Desi burgers, Alphonso mango drinks, boba, and Indo-Nepali comfort food in San Jose.",
+    description: "Fresh Alphonso mango drinks, desi burgers, and homemade mango sweets in San Jose.",
   },
 };
 

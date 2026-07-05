@@ -201,7 +201,7 @@ export function MenuPageClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE_OUT, delay: 0.12 }}
           >
-            Alphonso mango drinks, desi burgers, and Indo-Nepali comfort food —{" "}
+            Fresh Alphonso mango drinks, desi burgers, and homemade mango sweets —{" "}
             <span>{menuSections.length} categories, {totalItems} dishes,</span> updated live.
           </motion.p>
         </div>

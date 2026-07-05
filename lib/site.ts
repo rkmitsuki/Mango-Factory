@@ -5,7 +5,7 @@ export type { MenuContentDocument, MenuItem, MenuSection } from "@/lib/menu-cont
 export const site = {
   name: "Mango Factory",
   shortName: "MF",
-  tagline: "Alphonso mango drinks, desi burgers, and Indo-Nepali comfort food.",
+  tagline: "Fresh Alphonso mango drinks, desi burgers, and homemade mango sweets.",
   address: "326 Commercial St, San Jose, CA",
   hours: "Open daily at 11 AM",
   phone: "(408) 555-0198",
@@ -56,9 +56,9 @@ const signatureContent = [
     note: "Pure Alphonso, no extra sweeteners.",
   },
   {
-    name: "Veg Momo Noodle Soup",
-    category: "Guest Favorite",
-    note: "Indo-Nepali momos in a rich broth—great when you want comforting, filling food.",
+    name: "Alphonso Mango Cheesecake",
+    category: "Homemade",
+    note: "Silky mango cheesecake on a soft biscuit base — made in-house.",
   },
 ] as const;
 
@@ -87,17 +87,17 @@ export const orderPairings = [
   {
     title: "Burger + mango shake",
     items: "Desi Veg Paneer Burger, Sweet Mango Milkshake",
-    note: "Savory burger and sweet mango shake in one order.",
+    note: "Savory paneer burger and a sweet Alphonso shake in one order.",
   },
   {
-    title: "Soup + spring rolls",
-    items: "Veg Momo Noodle Soup, Veg Spring Rolls",
-    note: "Comfort combo for lunch, rainy days, and pickup.",
+    title: "Bagel + fresh juice",
+    items: "Mango Cream Cheese Bagel, Fresh Alphonso Mango Juice",
+    note: "Homemade mango cream cheese with a cold-pressed juice.",
   },
   {
-    title: "Fried rice + Alphonso juice",
-    items: "Veg Fried Rice, Fresh Alphonso Mango Juice",
-    note: "Fast and filling with a bright mango finish.",
+    title: "Burger + cheesecake",
+    items: "Desi Veg Cheese Burger, Alphonso Mango Cheesecake",
+    note: "A savory desi burger and a homemade mango finish.",
   },
 ] as const;
 
@@ -111,15 +111,15 @@ export const customerQuotes = [
     source: "DoorDash review",
   },
   {
-    quote: "Momo noodle soup has the seasoning and quantity people keep coming back for.",
+    quote: "The mango cheesecake and shakes taste homemade — because they are.",
     source: "Google Maps",
   },
 ] as const;
 
 export const customerMoments = [
-  ["Lunch break", "Burger, fried rice, mango drink"],
-  ["Sweet stop", "Alphonso shake, boba, mango slice"],
-  ["Comfort order", "Momo noodle soup, spring rolls"],
+  ["Lunch break", "Paneer burger, fresh mango juice"],
+  ["Sweet stop", "Alphonso shake, mango slice"],
+  ["Homemade treat", "Mango cheesecake, cream cheese bagel"],
 ] as const;
 
 export const trackerStats = [

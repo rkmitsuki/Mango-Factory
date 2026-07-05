@@ -43,12 +43,12 @@ const storyPanels: StoryPanel[] = [
     alt: "Loaded burger on a wooden board",
   },
   {
-    id: "comfort",
-    eyebrow: "05 — Comfort",
-    title: "Indo-Nepali comfort, built for return visits.",
-    body: "Momos land in a rich, well-seasoned broth in the Veg Momo Noodle Soup — the dish customers mention by name in reviews. It's the cold-day order, the one that turns a quick stop into a sit-down meal.",
-    image: "https://images.unsplash.com/photo-1767324672653-84c017d85d8e?auto=format&fit=crop&w=1400&q=85",
-    alt: "Momos steaming in a bamboo basket",
+    id: "homemade",
+    eyebrow: "05 — Homemade",
+    title: "The sweet finish is made in-house.",
+    body: "The mango cheesecake, the mango cream cheese, the chutney on every burger — all made in our own kitchen, in small batches, from scratch. It's the part you can't buy off a shelf, and the reason regulars keep coming back.",
+    image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1400&q=85",
+    alt: "Slice of mango cheesecake on a plate",
   },
 ];
 
@@ -56,7 +56,7 @@ const marqueeItems = [
   "ALPHONSO MANGO",
   "326 COMMERCIAL ST, SAN JOSE",
   "DESI BURGERS",
-  "INDO-NEPALI COMFORT",
+  "HOMEMADE SWEETS",
   "OPEN DAILY AT 11 AM",
   "DOORDASH READY",
 ];
@@ -91,8 +91,8 @@ export function AboutStory() {
             </MotionItem>
             <MotionItem variant="rise">
               <p className="about-hero-sub max-w-2xl">
-                A San Jose counter built around Alphonso mango — sweet drinks on one side,
-                desi burgers and Indo-Nepali comfort food on the other, served {site.hours.toLowerCase()}.
+                A San Jose counter built around Alphonso mango — fresh drinks on one side,
+                desi burgers and homemade mango sweets on the other, served {site.hours.toLowerCase()}.
               </p>
             </MotionItem>
             <MotionItem variant="softScale">

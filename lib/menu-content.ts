@@ -119,33 +119,6 @@ export const fallbackMenuSections: MenuSection[] = [
       },
     ],
   },
-  {
-    name: "Comfort",
-    note: "Indo-Nepali comfort, made to share.",
-    items: [
-      {
-        name: "Veg Momo Noodle Soup",
-        description: "Vegetable momos, soft noodles, and broth with coriander and scallion.",
-        price: "$14.00",
-        tags: ["Comfort", "Popular", "Bowl"],
-        image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=900&q=85",
-      },
-      {
-        name: "Veg Fried Rice",
-        description: "Toasted rice with vegetables and light house-seasoned sauce.",
-        price: "$12.50",
-        tags: ["Comfort", "Bowl"],
-        image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=85",
-      },
-      {
-        name: "Veg Spring Rolls",
-        description: "Crispy rolls with mild veggie filling and house sweet-chili dip.",
-        price: "$8.50",
-        tags: ["Comfort", "Add-on"],
-        image: "https://images.unsplash.com/photo-1596662951482-f5f6d6d0e0c1?auto=format&fit=crop&w=900&q=85",
-      },
-    ],
-  },
 ];
 
 function isStringArray(value: unknown): value is string[] {
