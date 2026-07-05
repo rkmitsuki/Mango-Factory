@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { ParallaxLayer, Reveal } from "@/components/motion";
 import { type MenuSection } from "@/lib/menu-content";
 import { site } from "@/lib/site";
 import { useLiveMenuSections } from "@/lib/use-live-menu-sections";
@@ -16,8 +17,10 @@ function toSectionId(name: string) {
 
 type Reduce = boolean | null;
 
-/** The signature Mango Bar — the 3 Alphonso drinks, marketed as a tasting flight. */
+/** The signature Mango Bar — the 3 Alphonso drinks, shown as a layered tasting flight. */
 function MangoBar({ section, reduce }: { section: MenuSection; reduce: Reduce }) {
+  const strengths = [30, -14, 46];
+
   return (
     <motion.section
       layout
@@ -29,44 +32,48 @@ function MangoBar({ section, reduce }: { section: MenuSection; reduce: Reduce })
       exit={{ opacity: 0 }}
       transition={{ duration: 0.25 }}
     >
-      <div className="section-shell mango-bar-shell">
-        <header className="mango-bar-head">
+      <div className="mango-bar-aura" aria-hidden="true" />
+      <div className="section-shell mango-bar-inner">
+        <Reveal className="mango-bar-head">
           <p className="mango-bar-eyebrow">✦ The Mango Bar</p>
           <h2 className="mango-bar-title">Three ways to drink an Alphonso.</h2>
-          <p className="mango-bar-note">
-            The whole menu starts here. {section.note}
-          </p>
-        </header>
+          <p className="mango-bar-note">{section.note} It&apos;s where the whole menu started.</p>
+        </Reveal>
 
         <div className="mango-bar-flight">
           {section.items.map((item, i) => (
-            <motion.article
+            <ParallaxLayer
               key={item.name}
-              className="mango-pour"
-              initial={reduce ? { opacity: 0 } : { opacity: 0, y: 26 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.6, delay: reduce ? 0 : i * 0.1, ease: EASE_OUT }}
+              className="mango-pour-wrap"
+              strength={reduce ? 0 : strengths[i % strengths.length]}
             >
-              <div className="mango-pour-media">
-                <Image
-                  src={item.image}
-                  alt={item.name}
-                  fill
-                  sizes="(max-width:640px) 100vw, (max-width:900px) 50vw, 33vw"
-                  quality={86}
-                  className="photo-grade"
-                />
-                <span className="mango-pour-num" aria-hidden="true">
-                  0{i + 1}
-                </span>
-              </div>
-              <div className="mango-pour-body">
-                <h3>{item.name}</h3>
-                <p>{item.description}</p>
-                <span className="mango-pour-price">{item.price}</span>
-              </div>
-            </motion.article>
+              <motion.article
+                className="mango-pour"
+                initial={reduce ? { opacity: 0 } : { opacity: 0, y: 46 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.75, delay: reduce ? 0 : i * 0.14, ease: EASE_OUT }}
+              >
+                <div className="mango-pour-media">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    sizes="(max-width:640px) 100vw, (max-width:900px) 50vw, 33vw"
+                    quality={86}
+                    className="photo-grade"
+                  />
+                  <span className="mango-pour-num" aria-hidden="true">
+                    0{i + 1}
+                  </span>
+                </div>
+                <div className="mango-pour-body">
+                  <h3>{item.name}</h3>
+                  <p>{item.description}</p>
+                  <span className="mango-pour-price">{item.price}</span>
+                </div>
+              </motion.article>
+            </ParallaxLayer>
           ))}
         </div>
       </div>
@@ -74,7 +81,7 @@ function MangoBar({ section, reduce }: { section: MenuSection; reduce: Reduce })
   );
 }
 
-/** Standard category — a clean refined image grid. */
+/** Standard food category — a clean refined image grid. */
 function GridSection({ section, reduce }: { section: MenuSection; reduce: Reduce }) {
   return (
     <motion.section
@@ -137,13 +144,20 @@ export function MenuPageClient() {
   const reduce = useReducedMotion();
   const totalItems = menuSections.reduce((n, s) => n + s.items.length, 0);
 
+  // Food categories first, the Mango Bar as the finale.
+  const orderedSections = useMemo(() => {
+    const food = menuSections.filter((s) => s.name !== MANGO_BAR);
+    const bar = menuSections.filter((s) => s.name === MANGO_BAR);
+    return [...food, ...bar];
+  }, [menuSections]);
+
   const [searchQuery, setSearchQuery] = useState("");
   const [activeSection, setActiveSection] = useState("");
 
   const filteredMenu = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
-    if (!q) return menuSections;
-    return menuSections
+    if (!q) return orderedSections;
+    return orderedSections
       .map((s) => ({
         ...s,
         items: s.items.filter((item) =>
@@ -151,7 +165,7 @@ export function MenuPageClient() {
         ),
       }))
       .filter((s) => s.items.length > 0);
-  }, [menuSections, searchQuery]);
+  }, [orderedSections, searchQuery]);
 
   const hasQuery = searchQuery.trim().length > 0;
   const matchCount = filteredMenu.reduce((n, s) => n + s.items.length, 0);
@@ -211,7 +225,7 @@ export function MenuPageClient() {
       <div className="menu-bar">
         <div className="section-shell menu-bar-inner">
           <nav className="menu-cats" aria-label="Jump to category">
-            {menuSections.map((s) => {
+            {orderedSections.map((s) => {
               const id = toSectionId(s.name);
               return (
                 <a
@@ -250,7 +264,7 @@ export function MenuPageClient() {
         </div>
       </div>
 
-      {/* ── Sections ──────────────────────────────────────────────────── */}
+      {/* ── Sections: food grids first, Mango Bar finale ──────────────── */}
       <div id="menu-grid" className="menu-body">
         {hasQuery && (
           <p className="section-shell menu-result">

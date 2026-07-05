@@ -159,30 +159,47 @@
   color: var(--ink);
 }
 
-/* ─── The Mango Bar (signature feature) ────────────────────────────────────── */
+/* ─── The Mango Bar (signature finale) ─────────────────────────────────────── */
 
 .mango-bar {
-  padding-block: 48px 12px;
-}
-
-.mango-bar-shell {
   position: relative;
   overflow: hidden;
-  border-radius: 24px;
-  border: 1px solid rgba(181, 133, 47, 0.28);
-  padding: clamp(28px, 4vw, 56px);
+  margin-top: 8px;
+  padding-block: clamp(72px, 9vw, 124px);
+  background: linear-gradient(180deg, #f6ead1 0%, #f1e2c3 100%);
+  border-top: 1px solid rgba(181, 133, 47, 0.3);
+}
+
+.mango-bar-aura {
+  position: absolute;
+  inset: -28% -12% auto -12%;
+  height: 82%;
+  z-index: 0;
+  pointer-events: none;
   background:
-    radial-gradient(130% 130% at 88% -10%, rgba(181, 133, 47, 0.18), transparent 58%),
-    linear-gradient(165deg, #f8edd7 0%, #f1e3c6 100%);
+    radial-gradient(55% 60% at 80% 18%, rgba(181, 133, 47, 0.32), transparent 62%),
+    radial-gradient(46% 55% at 10% 92%, rgba(200, 120, 40, 0.16), transparent 60%);
+  filter: blur(10px);
+  animation: mangoAura 18s ease-in-out infinite alternate;
+}
+
+@keyframes mangoAura {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(-4%, 3%, 0) scale(1.1); }
+}
+
+.mango-bar-inner {
+  position: relative;
+  z-index: 1;
 }
 
 .mango-bar-head {
-  max-width: 62ch;
-  margin-bottom: 36px;
+  max-width: 60ch;
+  margin-bottom: clamp(40px, 6vw, 76px);
 }
 
 .mango-bar-eyebrow {
-  margin: 0 0 14px;
+  margin: 0 0 16px;
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 0.76rem;
   font-weight: 700;
@@ -194,7 +211,7 @@
 .mango-bar-title {
   margin: 0;
   font-family: var(--font-display), Georgia, serif;
-  font-size: clamp(2rem, 4vw, 3.3rem);
+  font-size: clamp(2.2rem, 4.4vw, 3.7rem);
   font-weight: 850;
   line-height: 1.02;
   letter-spacing: -0.02em;
@@ -202,26 +219,33 @@
 }
 
 .mango-bar-note {
-  margin: 16px 0 0;
-  font-size: 1.04rem;
+  margin: 18px 0 0;
+  font-size: 1.06rem;
   line-height: 1.6;
   color: #7a6a52;
+  max-width: 54ch;
 }
 
 .mango-bar-flight {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: clamp(20px, 3vw, 36px);
+  align-items: start;
+}
+
+.mango-pour-wrap {
+  will-change: transform;
 }
 
 .mango-pour {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border-radius: 16px;
-  border: 1px solid rgba(181, 133, 47, 0.22);
-  background: rgba(255, 253, 248, 0.72);
-  backdrop-filter: blur(4px);
+  border-radius: 18px;
+  border: 1px solid rgba(181, 133, 47, 0.24);
+  background: rgba(255, 253, 248, 0.8);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 16px 46px rgba(96, 66, 20, 0.1);
 }
 
 .mango-pour-media {
@@ -232,27 +256,27 @@
 
 .mango-pour-media img {
   object-fit: cover;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .mango-pour:hover .mango-pour-media img {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .mango-pour-num {
   position: absolute;
-  top: 12px;
-  left: 12px;
+  top: 14px;
+  left: 14px;
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: rgba(27, 23, 18, 0.62);
+  background: rgba(27, 23, 18, 0.66);
   backdrop-filter: blur(6px);
   color: var(--paper);
   font-family: var(--font-display), Georgia, serif;
-  font-size: 0.92rem;
+  font-size: 1rem;
   font-weight: 800;
 }
 
@@ -261,13 +285,13 @@
   flex-direction: column;
   flex: 1;
   gap: 6px;
-  padding: 16px 18px 20px;
+  padding: 18px 20px 22px;
 }
 
 .mango-pour-body h3 {
   margin: 0;
-  font-size: 1.06rem;
-  font-weight: 660;
+  font-size: 1.12rem;
+  font-weight: 680;
   line-height: 1.3;
   letter-spacing: -0.01em;
   color: var(--ink);
@@ -276,15 +300,15 @@
 .mango-pour-body p {
   margin: 0;
   flex: 1;
-  font-size: 0.88rem;
-  line-height: 1.5;
+  font-size: 0.9rem;
+  line-height: 1.52;
   color: var(--muted);
 }
 
 .mango-pour-price {
-  margin-top: 6px;
+  margin-top: 8px;
   font-family: var(--font-display), Georgia, serif;
-  font-size: 1.16rem;
+  font-size: 1.2rem;
   font-weight: 820;
   color: var(--mango-deep);
 }
@@ -499,7 +523,7 @@
 
   .mango-bar-flight {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 26px;
   }
 
   .mango-pour {

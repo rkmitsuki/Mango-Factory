@@ -27,6 +27,36 @@ const signatureCopyByName = {
   },
 } as const;
 
+const storyRows = [
+  {
+    id: "fresh",
+    num: "01",
+    kicker: "Fresh",
+    title: "Pressed and poured the same day.",
+    body: "Juices are cold-pressed and shakes are blended the moment you order — nothing sits, nothing comes from concentrate. You taste the fruit, not a mix.",
+    image: "https://images.unsplash.com/photo-1716956755600-4d32af2b8f87?auto=format&fit=crop&w=1200&q=85",
+    alt: "Tall glass of fresh-pressed Alphonso mango juice",
+  },
+  {
+    id: "alphonso",
+    num: "02",
+    kicker: "Alphonso mango",
+    title: "The king of mangoes, and nothing less.",
+    body: "A short season, deep honeyed sweetness, and a perfume you catch before the first sip. Every drink and every sweet on the menu is built on real Alphonso — never a substitute.",
+    image: "https://images.unsplash.com/photo-1544531480-9eadeb3c8f41?auto=format&fit=crop&w=1200&q=85",
+    alt: "A ripe Alphonso mango held in hand",
+  },
+  {
+    id: "homemade",
+    num: "03",
+    kicker: "Homemade",
+    title: "Made in our kitchen, in small batches.",
+    body: "The mango cream cheese, the cheesecake, the chutney on every burger — all made from scratch in-house. It's the part you can't buy off a shelf, and the reason regulars keep coming back.",
+    image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1200&q=85",
+    alt: "A slice of homemade mango cheesecake",
+  },
+];
+
 function ArrowIcon() {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" className="icon">
@@ -105,36 +135,36 @@ export function LiveHomePage() {
         speed={28}
       />
 
-      <section className="home-section ethos-section">
-        <Reveal className="section-shell ethos-head">
+      <section className="story-section">
+        <Reveal className="section-shell story-head">
           <p className="label">What makes it ours</p>
           <h2 className="display-section text-balance">Fresh fruit, made by hand.</h2>
+          <p className="story-head-sub">Three things we don&apos;t cut corners on.</p>
         </Reveal>
-        <div className="section-shell ethos-grid">
-          <Reveal className="ethos-item">
-            <span className="ethos-num">01</span>
-            <h3>Fresh, always</h3>
-            <p>
-              Juices are cold-pressed and shakes are blended to order — nothing sits,
-              nothing comes from concentrate. You taste the fruit, not a mix.
-            </p>
-          </Reveal>
-          <Reveal className="ethos-item" delay={0.1}>
-            <span className="ethos-num">02</span>
-            <h3>Pure Alphonso mango</h3>
-            <p>
-              The king of mangoes: a short season, deep sweetness, and a perfume you
-              catch before the first sip. Every drink and sweet is built on it.
-            </p>
-          </Reveal>
-          <Reveal className="ethos-item" delay={0.2}>
-            <span className="ethos-num">03</span>
-            <h3>Homemade</h3>
-            <p>
-              Mango cream cheese, cheesecake, and chutneys are made in our own kitchen —
-              small batches from scratch, never off a supplier&apos;s shelf.
-            </p>
-          </Reveal>
+
+        <div className="story-rows">
+          {storyRows.map((row) => (
+            <div className="story-row section-shell" key={row.id}>
+              <div className="story-row-media">
+                <ParallaxLayer className="story-row-parallax" strength={46}>
+                  <Image
+                    src={row.image}
+                    alt={row.alt}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 50vw"
+                    quality={85}
+                    className="photo-grade"
+                  />
+                </ParallaxLayer>
+                <span className="story-row-num" aria-hidden="true">{row.num}</span>
+              </div>
+              <Reveal className="story-row-text">
+                <p className="story-row-kicker">{row.kicker}</p>
+                <h3>{row.title}</h3>
+                <p className="story-row-body">{row.body}</p>
+              </Reveal>
+            </div>
+          ))}
         </div>
       </section>
 
