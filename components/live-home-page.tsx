@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Marquee, MotionCard, MotionGroup, MotionItem, MotionLink } from "@/components/motion";
+import { Marquee, MotionCard, MotionGroup, MotionItem, MotionLink, ParallaxLayer, Reveal } from "@/components/motion";
 import { FeedbackCarousel, LocationMap, PairingCarousel } from "@/components/home-showcase";
 import { getSignatureItems } from "@/lib/menu-content";
 import { proof, site } from "@/lib/site";
@@ -69,15 +69,17 @@ export function LiveHomePage() {
           </div>
           <MotionItem className="hero-visual-wrap" variant="visual">
             <div className="hero-visual">
-              <Image
-                src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1600&q=92"
-                alt="Loaded vegetarian burger representing Mango Factory desi burger menu"
-                width={1400}
-                height={1000}
-                priority
-                quality={92}
-                className="photo-grade"
-              />
+              <ParallaxLayer className="hero-visual-parallax" strength={44} offset={["start start", "end start"]}>
+                <Image
+                  src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1600&q=92"
+                  alt="Loaded vegetarian burger representing Mango Factory desi burger menu"
+                  width={1400}
+                  height={1000}
+                  priority
+                  quality={92}
+                  className="photo-grade"
+                />
+              </ParallaxLayer>
               <div className="hero-ticket">
                 <span>Top pick</span>
                 <strong>Desi Veg Burger</strong>
@@ -88,14 +90,14 @@ export function LiveHomePage() {
       </section>
 
       <section className="proof-strip">
-        <div className="section-shell proof-grid">
+        <Reveal className="section-shell proof-grid">
           {proof.map(([value, label]) => (
             <div key={label}>
               <strong>{value}</strong>
               <span>{label}</span>
             </div>
           ))}
-        </div>
+        </Reveal>
       </section>
 
       <Marquee
@@ -104,13 +106,13 @@ export function LiveHomePage() {
       />
 
       <section className="home-section pairing-section">
-        <div className="section-shell">
+        <Reveal className="section-shell">
           <PairingCarousel />
-        </div>
+        </Reveal>
       </section>
 
       <section className="home-section cream-band" id="menu">
-        <div className="section-shell section-heading">
+        <Reveal className="section-shell section-heading">
           <div>
             <p className="label">Signature picks</p>
             <h2 className="display-section text-balance">Fan favorites from the kitchen.</h2>
@@ -118,7 +120,7 @@ export function LiveHomePage() {
           <Link className="button button-secondary" href="/menu">
             View full menu
           </Link>
-        </div>
+        </Reveal>
         <MotionGroup className="section-shell signature-grid">
           {signatures.map((item) => {
             const signatureCopy = signatureCopyByName[item.name as keyof typeof signatureCopyByName];
@@ -139,15 +141,15 @@ export function LiveHomePage() {
       </section>
 
       <section className="home-section feedback-section">
-        <div className="section-shell">
+        <Reveal className="section-shell">
           <FeedbackCarousel />
-        </div>
+        </Reveal>
       </section>
 
       <section className="home-section visit-section">
-        <div className="section-shell">
+        <Reveal className="section-shell">
           <LocationMap />
-        </div>
+        </Reveal>
       </section>
     </main>
   );

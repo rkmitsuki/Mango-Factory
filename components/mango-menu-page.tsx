@@ -2,9 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
-import { MotionGroup, MotionItem } from "@/components/motion";
-import { type MenuSection, type MenuItem } from "@/lib/menu-content";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { type MenuSection } from "@/lib/menu-content";
 import { site } from "@/lib/site";
 import { useLiveMenuSections } from "@/lib/use-live-menu-sections";
 
@@ -24,35 +23,9 @@ function itemMatchesFilter(tags: string[], filter: Filter) {
   return tags.includes(filter);
 }
 
-function sectionTags(items: MenuSection["items"]) {
-  return Array.from(new Set(items.flatMap((i) => i.tags)));
-}
-
-function isPopular(tags: string[]) {
-  return tags.includes("Popular") || tags.includes("Top Picks");
-}
-
-/** Decorative Alphonso mango silhouette. */
-function MangoMark({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 120 120" aria-hidden="true" fill="none">
-      <path
-        d="M83 20c14 8 26 24 26 44 0 30-25 52-53 52-24 0-45-16-45-41 0-30 24-46 40-59 9-7 21-4 32 4Z"
-        fill="currentColor"
-      />
-      <path
-        d="M88 14c-3 6-9 10-16 11"
-        stroke="currentColor"
-        strokeWidth="5"
-        strokeLinecap="round"
-        opacity="0.85"
-      />
-    </svg>
-  );
-}
-
 export function MenuPageClient() {
   const menuSections = useLiveMenuSections();
+  const reduce = useReducedMotion();
   const totalItems = menuSections.reduce((n, s) => n + s.items.length, 0);
 
   const availableFilters = useMemo<Filter[]>(() => {
@@ -65,15 +38,6 @@ export function MenuPageClient() {
       ),
     );
     return ["All", ...Array.from(found)];
-  }, [menuSections]);
-
-  const featured = useMemo<MenuItem | undefined>(() => {
-    const all = menuSections.flatMap((s) => s.items);
-    return (
-      all.find((i) => i.tags.includes("Top Picks")) ??
-      all.find((i) => i.tags.includes("Popular")) ??
-      all[0]
-    );
   }, [menuSections]);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -125,55 +89,48 @@ export function MenuPageClient() {
   return (
     <main className="menu-page">
       {/* ── Hero ──────────────────────────────────────────────────────── */}
-      <section className="menu-hero">
-        <div className="menu-hero-glow" aria-hidden="true" />
-        <MangoMark className="menu-hero-mango menu-hero-mango-a" />
-        <MangoMark className="menu-hero-mango menu-hero-mango-b" />
-        <MotionGroup className="section-shell menu-hero-inner">
-          <MotionItem variant="headline">
-            <p className="menu-hero-eyebrow">The Mango Factory Menu</p>
-            <h1 className="menu-hero-title text-balance">
-              Every bowl.<br />
-              Every burger.<br />
-              <em>Every mango.</em>
-            </h1>
-          </MotionItem>
-          <MotionItem variant="rise" className="menu-hero-foot">
-            <p className="menu-hero-meta">
-              <span>{menuSections.length}</span> categories
-              <i aria-hidden="true">·</i>
-              <span>{totalItems}</span> dishes
-              <i aria-hidden="true">·</i>
-              updated live
-            </p>
-            <div className="menu-hero-actions">
-              <a
-                className="button button-primary"
-                href={site.orderUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Order on DoorDash
-              </a>
-              <a className="button button-hero-ghost" href="#menu-grid">
-                Browse the menu
-              </a>
-            </div>
-          </MotionItem>
-        </MotionGroup>
-      </section>
+      <header className="menu-hero">
+        <div className="section-shell">
+          <motion.p
+            className="label"
+            initial={reduce ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: EASE_OUT }}
+          >
+            Menu
+          </motion.p>
+          <motion.h1
+            className="menu-hero-title text-balance"
+            initial={reduce ? false : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: EASE_OUT, delay: 0.05 }}
+          >
+            The full menu
+          </motion.h1>
+          <motion.p
+            className="menu-hero-sub"
+            initial={reduce ? false : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: EASE_OUT, delay: 0.12 }}
+          >
+            Alphonso mango drinks, desi burgers, and Indo-Nepali comfort food —
+            {" "}
+            <span>{menuSections.length} categories, {totalItems} dishes,</span> updated live.
+          </motion.p>
+        </div>
+      </header>
 
-      {/* ── Sticky filter bar ─────────────────────────────────────────── */}
+      {/* ── Sticky category + search bar ──────────────────────────────── */}
       <div className="menu-bar">
-        <div className="section-shell menu-bar-row">
-          <nav className="menu-bar-nav" aria-label="Jump to category">
+        <div className="section-shell menu-bar-inner">
+          <nav className="menu-cats" aria-label="Jump to category">
             {menuSections.map((s) => {
               const id = toSectionId(s.name);
               return (
                 <a
                   key={s.name}
                   href={`#${id}`}
-                  className={`menu-bar-tab${activeSection === id ? " is-active" : ""}`}
+                  className={`menu-cat${activeSection === id ? " is-active" : ""}`}
                 >
                   {s.name}
                 </a>
@@ -181,21 +138,21 @@ export function MenuPageClient() {
             })}
           </nav>
 
-          <label className="menu-bar-search" aria-label="Search menu">
-            <svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8">
+          <label className="menu-search" aria-label="Search menu">
+            <svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7">
               <circle cx="8.5" cy="8.5" r="5.5" />
               <path d="m13 13 4 4" strokeLinecap="round" />
             </svg>
             <input
               type="search"
               value={searchQuery}
-              placeholder="Search dishes…"
+              placeholder="Search"
               onChange={(e) => setSearchQuery(e.target.value)}
             />
             {searchQuery && (
               <button
                 type="button"
-                className="menu-bar-clear"
+                className="menu-search-clear"
                 onClick={() => setSearchQuery("")}
                 aria-label="Clear search"
               >
@@ -205,110 +162,48 @@ export function MenuPageClient() {
           </label>
         </div>
 
-        <div className="section-shell menu-bar-pills">
+        <div className="section-shell menu-filters">
           {availableFilters.map((f) => (
             <button
               key={f}
               type="button"
-              className={`menu-filter-pill${activeFilter === f ? " active" : ""}`}
+              className={`menu-chip${activeFilter === f ? " is-active" : ""}`}
               onClick={() => setActiveFilter(f)}
             >
               {f}
             </button>
           ))}
           {hasQueryOrFilter && (
-            <button type="button" className="menu-filter-clear" onClick={clearAll}>
-              Clear all
+            <button type="button" className="menu-chip-clear" onClick={clearAll}>
+              Clear
             </button>
           )}
         </div>
       </div>
 
-      {/* ── Featured spotlight (default view only) ─────────────────────── */}
-      {!hasQueryOrFilter && featured && (
-        <section className="menu-featured">
-          <motion.div
-            className="section-shell menu-featured-inner"
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, ease: EASE_OUT }}
-          >
-            <div className="menu-featured-media">
-              <Image
-                src={featured.image}
-                alt={featured.name}
-                fill
-                sizes="(max-width:900px) 100vw, 55vw"
-                quality={90}
-                className="photo-grade"
-              />
-              <span className="menu-featured-stamp">
-                <b>★</b> Most Ordered
-              </span>
-            </div>
-            <div className="menu-featured-text">
-              <p className="menu-featured-eyebrow">The house favorite</p>
-              <h2 className="menu-featured-name">{featured.name}</h2>
-              <p className="menu-featured-desc">{featured.description}</p>
-              <div className="menu-featured-tags">
-                {featured.tags.map((t) => (
-                  <span key={t} className="menu-card-tag">
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <div className="menu-featured-foot">
-                <span className="menu-featured-price">{featured.price}</span>
-                <a
-                  className="button button-primary"
-                  href={site.orderUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Order this
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-      )}
-
-      {/* ── Menu grid ──────────────────────────────────────────────────── */}
-      <div id="menu-grid" className="menu-grid-wrap">
+      {/* ── Sections ──────────────────────────────────────────────────── */}
+      <div id="menu-grid" className="menu-body">
         {hasQueryOrFilter && (
-          <motion.div
-            className="menu-result-band"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            key={`${searchQuery}|${activeFilter}`}
-          >
-            <p className="section-shell menu-result-note">
-              {matchCount === 0
-                ? "No dishes match"
-                : `${matchCount} dish${matchCount !== 1 ? "es" : ""} matching`}
-              {activeFilter !== "All" && <span className="menu-result-chip">{activeFilter}</span>}
-            </p>
-          </motion.div>
+          <p className="section-shell menu-result">
+            {matchCount === 0
+              ? "No dishes match"
+              : `${matchCount} dish${matchCount !== 1 ? "es" : ""}`}
+            {activeFilter !== "All" && ` in ${activeFilter}`}
+            {searchQuery.trim() && ` for “${searchQuery.trim()}”`}
+          </p>
         )}
 
         {filteredMenu.length === 0 ? (
-          <motion.div
-            className="menu-empty"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: EASE_OUT }}
-          >
-            <MangoMark className="menu-empty-mango" />
-            <h3>Nothing on the menu matches</h3>
+          <div className="menu-empty">
+            <h3>Nothing matches that</h3>
             <p>Try a different keyword or clear the filters to see everything.</p>
             <button type="button" className="button button-primary" onClick={clearAll}>
-              Reset the menu
+              Reset menu
             </button>
-          </motion.div>
+          </div>
         ) : (
           <AnimatePresence mode="popLayout">
-            {filteredMenu.map((section, si) => (
+            {filteredMenu.map((section) => (
               <motion.section
                 key={section.name}
                 layout
@@ -320,62 +215,40 @@ export function MenuPageClient() {
                 transition={{ duration: 0.25 }}
               >
                 <div className="section-shell">
-                  <header className="menu-section-hd">
-                    <span className="menu-section-num" aria-hidden="true">
-                      {String(si + 1).padStart(2, "0")}
-                    </span>
-                    <div className="menu-section-hd-text">
-                      <p className="menu-section-eyebrow">
-                        {sectionTags(section.items).join(" · ")}
-                      </p>
-                      <h2 className="menu-section-title">{section.name}</h2>
-                      <p className="menu-section-note">{section.note}</p>
-                    </div>
-                    <span className="menu-section-count">
-                      {section.items.length} item{section.items.length !== 1 ? "s" : ""}
-                    </span>
+                  <header className="menu-section-head">
+                    <h2>{section.name}</h2>
+                    <p>{section.note}</p>
                   </header>
 
-                  <div className="menu-card-grid">
+                  <div className="menu-grid">
                     <AnimatePresence mode="popLayout">
                       {section.items.map((item, i) => (
                         <motion.article
                           key={`${section.name}-${item.name}`}
                           layout
-                          className={`menu-card${isPopular(item.tags) ? " is-popular" : ""}`}
-                          initial={{ opacity: 0, y: 24 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, scale: 0.96 }}
-                          transition={{ duration: 0.44, delay: i * 0.06, ease: EASE_OUT }}
-                          whileHover={{ y: -6, transition: { duration: 0.2, ease: EASE_OUT } }}
+                          className="menu-card"
+                          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 22 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true, margin: "-40px" }}
+                          exit={{ opacity: 0, scale: 0.97 }}
+                          transition={{ duration: 0.5, delay: Math.min(i * 0.05, 0.25), ease: EASE_OUT }}
                         >
                           <div className="menu-card-media">
                             <Image
                               src={item.image}
                               alt={item.name}
                               fill
-                              sizes="(max-width:680px) 100vw, (max-width:980px) 50vw, 33vw"
-                              quality={85}
+                              sizes="(max-width:640px) 100vw, (max-width:980px) 50vw, 33vw"
+                              quality={82}
                               className="photo-grade"
                             />
-                            <div className="menu-card-scrim" aria-hidden="true" />
-                            {isPopular(item.tags) && (
-                              <span className="menu-card-star">
-                                <b>★</b> Popular
-                              </span>
-                            )}
-                            <span className="menu-card-price">{item.price}</span>
                           </div>
                           <div className="menu-card-body">
-                            <h3 className="menu-card-name">{item.name}</h3>
-                            <p className="menu-card-desc">{item.description}</p>
-                            <div className="menu-card-tags">
-                              {item.tags.map((t) => (
-                                <span key={t} className="menu-card-tag">
-                                  {t}
-                                </span>
-                              ))}
+                            <div className="menu-card-head">
+                              <h3>{item.name}</h3>
+                              <span className="menu-card-price">{item.price}</span>
                             </div>
+                            <p>{item.description}</p>
                           </div>
                         </motion.article>
                       ))}
@@ -388,14 +261,12 @@ export function MenuPageClient() {
         )}
       </div>
 
-      {/* ── Bottom CTA ─────────────────────────────────────────────────── */}
+      {/* ── CTA ───────────────────────────────────────────────────────── */}
       <section className="menu-cta">
-        <MangoMark className="menu-cta-mango" />
         <div className="section-shell menu-cta-inner">
           <div>
-            <p className="menu-cta-eyebrow">Hungry yet?</p>
-            <h2 className="menu-cta-title">Skip the line. Order ahead.</h2>
-            <p className="menu-cta-sub">Open daily at 11 AM · 326 Commercial St, San Jose, CA</p>
+            <h2>Order ahead, skip the wait.</h2>
+            <p>{site.hours} · {site.address}</p>
           </div>
           <a className="button button-primary" href={site.orderUrl} target="_blank" rel="noreferrer">
             Order on DoorDash

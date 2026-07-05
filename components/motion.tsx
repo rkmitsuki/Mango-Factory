@@ -176,18 +176,52 @@ export function MotionHeader({ children }: { children: React.ReactNode }) {
   );
 }
 
+export function Reveal({
+  children,
+  className,
+  delay = 0,
+  y = 28,
+  as = "div",
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+  y?: number;
+  as?: "div" | "section";
+}) {
+  const reduce = useReducedMotion();
+  const MotionTag = as === "section" ? motion.section : motion.div;
+
+  return (
+    <MotionTag
+      className={className}
+      initial={reduce ? { opacity: 1 } : { opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: reduce ? 0 : 0.7, ease: EASE_OUT_EXPO, delay: reduce ? 0 : delay }}
+    >
+      {children}
+    </MotionTag>
+  );
+}
+
 export function ParallaxLayer({
   children,
   className,
   strength = 60,
+  offset,
 }: {
   children: ReactNode;
   className?: string;
   strength?: number;
+  offset?: [string, string];
 }) {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: (offset ?? ["start end", "end start"]) as never,
+  });
   const y = useTransform(scrollYProgress, [0, 1], [strength, -strength]);
 
   return (
