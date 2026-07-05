@@ -2955,3 +2955,165 @@ a {
     aspect-ratio: 3 / 2;
   }
 }
+
+/* ─── Hero meta + Home Mango Bar band ──────────────────────────────────────── */
+
+.hero-meta {
+  margin: 2px 0 0;
+  font-size: 0.9rem;
+  font-weight: 560;
+  color: rgba(255, 248, 234, 0.58);
+  letter-spacing: 0.01em;
+}
+
+.hero-meta span {
+  color: var(--mango);
+  font-weight: 760;
+}
+
+.home-bar {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(64px, 8vw, 108px);
+  background: linear-gradient(180deg, #f6ead1 0%, #f1e2c3 100%);
+  border-block: 1px solid rgba(181, 133, 47, 0.3);
+}
+
+.home-bar-aura {
+  position: absolute;
+  inset: -30% -12% auto -12%;
+  height: 82%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(52% 60% at 82% 16%, rgba(181, 133, 47, 0.3), transparent 62%),
+    radial-gradient(46% 55% at 8% 92%, rgba(200, 120, 40, 0.15), transparent 60%);
+  filter: blur(10px);
+  animation: homeBarAura 18s ease-in-out infinite alternate;
+}
+
+@keyframes homeBarAura {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(-4%, 3%, 0) scale(1.1); }
+}
+
+.home-bar-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+
+.home-bar-head {
+  max-width: 44ch;
+}
+
+.home-bar-note {
+  margin: 18px 0 26px;
+  font-size: 1.06rem;
+  line-height: 1.62;
+  color: #7a6a52;
+}
+
+.home-bar-drinks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.home-bar-drink {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(181, 133, 47, 0.24);
+  background: rgba(255, 253, 248, 0.82);
+  box-shadow: 0 14px 40px rgba(96, 66, 20, 0.1);
+}
+
+.home-bar-drink-num {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(27, 23, 18, 0.62);
+  backdrop-filter: blur(6px);
+  color: var(--paper);
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.home-bar-drink-media {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.home-bar-drink-media img {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.home-bar-drink:hover .home-bar-drink-media img {
+  transform: scale(1.05);
+}
+
+.home-bar-drink-info {
+  padding: 13px 15px 16px;
+}
+
+.home-bar-drink-info h3 {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 640;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.home-bar-drink-info strong {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 820;
+  color: var(--mango-deep);
+}
+
+@media (max-width: 860px) {
+  .home-bar-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 520px) {
+  .home-bar-drinks {
+    grid-template-columns: 1fr;
+  }
+
+  .home-bar-drink {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .home-bar-drink-media {
+    width: 40%;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+  }
+
+  .home-bar-drink-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

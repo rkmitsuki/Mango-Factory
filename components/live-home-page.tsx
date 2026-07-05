@@ -68,6 +68,8 @@ function ArrowIcon() {
 export function LiveHomePage() {
   const sections = useLiveMenuSections();
   const signatures = getSignatureItems(sections);
+  const mangoBar = sections.find((s) => s.name === "Mango Bar");
+  const barDrinks = mangoBar ? mangoBar.items.slice(0, 3) : [];
 
   return (
     <main>
@@ -95,6 +97,11 @@ export function LiveHomePage() {
               <MotionLink className="button button-ghost" href="/menu">
                 View menu
               </MotionLink>
+            </MotionItem>
+            <MotionItem>
+              <p className="hero-meta">
+                <span>★ 4.9</span> on Google · Open daily at 11 AM · No added sugar
+              </p>
             </MotionItem>
           </div>
           <MotionItem className="hero-visual-wrap" variant="visual">
@@ -167,6 +174,46 @@ export function LiveHomePage() {
           ))}
         </div>
       </section>
+
+      {barDrinks.length > 0 && (
+        <section className="home-bar">
+          <div className="home-bar-aura" aria-hidden="true" />
+          <div className="section-shell home-bar-inner">
+            <Reveal className="home-bar-head">
+              <p className="label">The Mango Bar</p>
+              <h2 className="display-section text-balance">Three ways to drink an Alphonso.</h2>
+              <p className="home-bar-note">
+                Cold-pressed juice, a thick 16 oz shake, and a no-sugar sweet shake — every
+                pour is pure Alphonso mango, blended fresh to order.
+              </p>
+              <MotionLink className="button button-primary" href="/menu">
+                See the full menu <ArrowIcon />
+              </MotionLink>
+            </Reveal>
+            <div className="home-bar-drinks">
+              {barDrinks.map((drink, index) => (
+                <Reveal className="home-bar-drink" key={drink.name} delay={index * 0.08}>
+                  <span className="home-bar-drink-num" aria-hidden="true">0{index + 1}</span>
+                  <div className="home-bar-drink-media">
+                    <Image
+                      src={drink.image}
+                      alt={drink.name}
+                      fill
+                      sizes="(max-width: 900px) 33vw, 220px"
+                      quality={82}
+                      className="photo-grade"
+                    />
+                  </div>
+                  <div className="home-bar-drink-info">
+                    <h3>{drink.name}</h3>
+                    <strong>{drink.price}</strong>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="home-section pairing-section">
         <Reveal className="section-shell">
