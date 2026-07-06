@@ -300,7 +300,7 @@ export function Counter({
     const tick = (now: number) => {
       const progress = Math.min((now - start) / (duration * 1000), 1);
       const eased = 1 - Math.pow(1 - progress, 3);
-      setDisplay(Math.round(value * eased * 10) / 10);
+      setDisplay(Math.round(value * eased * 100) / 100);
       if (progress < 1) frame = requestAnimationFrame(tick);
     };
 
@@ -350,9 +350,11 @@ export type StoryPanel = {
 
 function ScrollStoryPanel({
   panel,
+  isActive,
   onActivate,
 }: {
   panel: StoryPanel;
+  isActive: boolean;
   onActivate: () => void;
 }) {
   const reduce = useReducedMotion();
@@ -366,7 +368,7 @@ function ScrollStoryPanel({
   return (
     <motion.article
       ref={ref}
-      className={`scroll-story-panel${inView ? " is-active" : ""}`}
+      className={`scroll-story-panel${isActive ? " is-active" : ""}`}
       initial={reduce ? { opacity: 1 } : { opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.5 }}
@@ -414,7 +416,12 @@ export function ScrollStory({ panels }: { panels: StoryPanel[] }) {
 
       <div className="scroll-story-panels">
         {panels.map((panel, index) => (
-          <ScrollStoryPanel key={panel.id} panel={panel} onActivate={() => setActive(index)} />
+          <ScrollStoryPanel
+            key={panel.id}
+            panel={panel}
+            isActive={active === index}
+            onActivate={() => setActive(index)}
+          />
         ))}
       </div>
     </div>

@@ -175,6 +175,35 @@ export function LiveHomePage() {
         </div>
       </section>
 
+      <section className="home-section cream-band" id="menu">
+        <Reveal className="section-shell section-heading">
+          <div>
+            <p className="label">Top picks</p>
+            <h2 className="display-section text-balance">Fan favorites from the kitchen.</h2>
+          </div>
+          <Link className="button button-secondary" href="/menu">
+            View full menu
+          </Link>
+        </Reveal>
+        <MotionGroup className="section-shell signature-grid">
+          {signatures.map((item) => {
+            const signatureCopy = signatureCopyByName[item.name as keyof typeof signatureCopyByName];
+
+            return (
+              <MotionCard className="signature-card" key={item.name}>
+                <Image src={item.image} alt={item.name} width={760} height={540} quality={85} className="photo-grade" />
+                <div>
+                  <p>{signatureCopy?.category ?? (item.tags[0] ?? "Featured")}</p>
+                  <h3>{item.name}</h3>
+                  <span>{signatureCopy?.note ?? item.description}</span>
+                  <strong>{item.price}</strong>
+                </div>
+              </MotionCard>
+            );
+          })}
+        </MotionGroup>
+      </section>
+
       {barDrinks.length > 0 && (
         <section className="home-bar">
           <div className="home-bar-aura" aria-hidden="true" />
@@ -219,35 +248,6 @@ export function LiveHomePage() {
         <Reveal className="section-shell">
           <PairingCarousel />
         </Reveal>
-      </section>
-
-      <section className="home-section cream-band" id="menu">
-        <Reveal className="section-shell section-heading">
-          <div>
-            <p className="label">Signature picks</p>
-            <h2 className="display-section text-balance">Fan favorites from the kitchen.</h2>
-          </div>
-          <Link className="button button-secondary" href="/menu">
-            View full menu
-          </Link>
-        </Reveal>
-        <MotionGroup className="section-shell signature-grid">
-          {signatures.map((item) => {
-            const signatureCopy = signatureCopyByName[item.name as keyof typeof signatureCopyByName];
-
-            return (
-              <MotionCard className="signature-card" key={item.name}>
-                <Image src={item.image} alt={item.name} width={760} height={540} quality={85} className="photo-grade" />
-                <div>
-                  <p>{signatureCopy?.category ?? (item.tags[0] ?? "Featured")}</p>
-                  <h3>{item.name}</h3>
-                  <span>{signatureCopy?.note ?? item.description}</span>
-                  <strong>{item.price}</strong>
-                </div>
-              </MotionCard>
-            );
-          })}
-        </MotionGroup>
       </section>
 
       <section className="home-section feedback-section">

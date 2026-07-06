@@ -142,13 +142,12 @@ function GridSection({ section, reduce }: { section: MenuSection; reduce: Reduce
 export function MenuPageClient() {
   const menuSections = useLiveMenuSections();
   const reduce = useReducedMotion();
-  const totalItems = menuSections.reduce((n, s) => n + s.items.length, 0);
 
-  // Food categories first, the Mango Bar as the finale.
+  // The Mango Bar leads, then the food categories.
   const orderedSections = useMemo(() => {
-    const food = menuSections.filter((s) => s.name !== MANGO_BAR);
     const bar = menuSections.filter((s) => s.name === MANGO_BAR);
-    return [...food, ...bar];
+    const food = menuSections.filter((s) => s.name !== MANGO_BAR);
+    return [...bar, ...food];
   }, [menuSections]);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -215,8 +214,8 @@ export function MenuPageClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE_OUT, delay: 0.12 }}
           >
-            Fresh Alphonso mango drinks, desi burgers, and homemade sweets.{" "}
-            <span>{menuSections.length} categories, {totalItems} dishes,</span> updated live.
+            Everything we make, from cold-pressed Alphonso mango drinks to desi paneer
+            burgers and homemade mango sweets.
           </motion.p>
         </div>
       </header>

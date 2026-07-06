@@ -18,7 +18,7 @@ export const site = {
 export const navItems = [
   ["Menu", "/menu"],
   ["About", "/about"],
-  ["Directions", site.mapsUrl],
+  ["Directions", "/directions"],
 ] as const;
 
 const menuItemsByName = new Map(

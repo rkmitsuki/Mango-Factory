@@ -49,7 +49,7 @@ export function PairingCarousel() {
         <p className="label">Order pairings</p>
         <h2 className="display-section text-balance">Most popular combinations.</h2>
         <p>
-          Guests often start with a burger or mango drink, then add a side or soup.
+          Guests often start with a burger or a mango drink, then add a sweet.
         </p>
       </div>
 
