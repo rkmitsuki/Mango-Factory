@@ -215,7 +215,7 @@ export function MenuPageClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE_OUT, delay: 0.12 }}
           >
-            Fresh Alphonso mango drinks, desi burgers, and homemade mango sweets —{" "}
+            Fresh Alphonso mango drinks, desi burgers, and homemade sweets.{" "}
             <span>{menuSections.length} categories, {totalItems} dishes,</span> updated live.
           </motion.p>
         </div>

@@ -23,7 +23,7 @@ const signatureCopyByName = {
   },
   "Alphonso Mango Cheesecake": {
     category: "Homemade",
-    note: "Silky mango cheesecake on a soft biscuit base — made in-house.",
+    note: "Silky mango cheesecake on a soft biscuit base. Made in-house.",
   },
 } as const;
 
@@ -33,7 +33,7 @@ const storyRows = [
     num: "01",
     kicker: "Fresh",
     title: "Pressed and poured the same day.",
-    body: "Juices are cold-pressed and shakes are blended the moment you order — nothing sits, nothing comes from concentrate. You taste the fruit, not a mix.",
+    body: "Juices cold-pressed, shakes blended to order. Nothing sits, nothing from concentrate.",
     image: "https://images.unsplash.com/photo-1716956755600-4d32af2b8f87?auto=format&fit=crop&w=1200&q=85",
     alt: "Tall glass of fresh-pressed Alphonso mango juice",
   },
@@ -42,7 +42,7 @@ const storyRows = [
     num: "02",
     kicker: "Alphonso mango",
     title: "The king of mangoes, and nothing less.",
-    body: "A short season, deep honeyed sweetness, and a perfume you catch before the first sip. Every drink and every sweet on the menu is built on real Alphonso — never a substitute.",
+    body: "A short season, honeyed sweetness, and a scent you notice before the first sip. Every drink starts with real Alphonso.",
     image: "https://images.unsplash.com/photo-1544531480-9eadeb3c8f41?auto=format&fit=crop&w=1200&q=85",
     alt: "A ripe Alphonso mango held in hand",
   },
@@ -51,7 +51,7 @@ const storyRows = [
     num: "03",
     kicker: "Homemade",
     title: "Made in our kitchen, in small batches.",
-    body: "The mango cream cheese, the cheesecake, the chutney on every burger — all made from scratch in-house. It's the part you can't buy off a shelf, and the reason regulars keep coming back.",
+    body: "Mango cream cheese, cheesecake, and chutneys, all made in-house from scratch. The part you can't buy off a shelf.",
     image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1200&q=85",
     alt: "A slice of homemade mango cheesecake",
   },
@@ -78,13 +78,13 @@ export function LiveHomePage() {
         <MotionGroup className="section-shell hero-layout">
           <div className="hero-copy">
             <MotionItem variant="headline">
-              <h1 className="display-hero text-balance">Fresh Alphonso mango, done daily.</h1>
+              <p className="hero-kicker">Desi Burgers · Alphonso Mango · San Jose</p>
+              <h1 className="display-hero text-balance">Fresh Alphonso mango, made daily.</h1>
             </MotionItem>
             <MotionItem>
               <p className="hero-lede">
-                Cold-pressed Alphonso mango juice and shakes, desi paneer burgers, and
-                homemade mango sweets — blended, stacked, and made fresh to order at
-                326 Commercial St in San Jose.
+                Cold-pressed mango juice, desi paneer burgers, and homemade sweets.
+                Made fresh daily in San Jose.
               </p>
             </MotionItem>
             <MotionItem className="action-row">
@@ -183,8 +183,8 @@ export function LiveHomePage() {
               <p className="label">The Mango Bar</p>
               <h2 className="display-section text-balance">Three ways to drink an Alphonso.</h2>
               <p className="home-bar-note">
-                Cold-pressed juice, a thick 16 oz shake, and a no-sugar sweet shake — every
-                pour is pure Alphonso mango, blended fresh to order.
+                Cold-pressed juice, a thick 16 oz shake, and a no-sugar sweet shake.
+                Every pour is pure Alphonso.
               </p>
               <MotionLink className="button button-primary" href="/menu">
                 See the full menu <ArrowIcon />

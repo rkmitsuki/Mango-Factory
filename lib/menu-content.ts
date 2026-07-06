@@ -20,18 +20,18 @@ export type MenuContentDocument = {
 export const fallbackMenuSections: MenuSection[] = [
   {
     name: "Mango Bar",
-    note: "Every pour is pure Alphonso — pressed, blended, or shaken.",
+    note: "Every pour is pure Alphonso, pressed or blended fresh.",
     items: [
       {
         name: "Fresh Alphonso Mango Juice",
-        description: "Cold-pressed Alphonso, chilled and unsweetened — just the fruit.",
+        description: "Cold-pressed Alphonso, chilled and unsweetened.",
         price: "$11.99",
         tags: ["Drinks", "Popular", "Top Picks"],
         image: "https://images.unsplash.com/photo-1716956755600-4d32af2b8f87?auto=format&fit=crop&w=900&q=85",
       },
       {
         name: "Fresh Alphonso Milkshake 16 oz",
-        description: "The full 16 oz pour — thick, cold, and all Alphonso.",
+        description: "The full 16 oz pour, thick, cold, and all Alphonso.",
         price: "$10.00",
         tags: ["Drinks", "Popular"],
         image: "https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?auto=format&fit=crop&w=900&q=85",

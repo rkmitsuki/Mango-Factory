@@ -58,7 +58,7 @@ const signatureContent = [
   {
     name: "Alphonso Mango Cheesecake",
     category: "Homemade",
-    note: "Silky mango cheesecake on a soft biscuit base — made in-house.",
+    note: "Silky mango cheesecake on a soft biscuit base. Made in-house.",
   },
 ] as const;
 
@@ -111,7 +111,7 @@ export const customerQuotes = [
     source: "DoorDash review",
   },
   {
-    quote: "The mango cheesecake and shakes taste homemade — because they are.",
+    quote: "The mango cheesecake and shakes taste homemade, because they are.",
     source: "Google Maps",
   },
 ] as const;

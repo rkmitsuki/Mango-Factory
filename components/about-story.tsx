@@ -12,23 +12,23 @@ const HERO_IMAGE =
 const storyPanels: StoryPanel[] = [
   {
     id: "source",
-    eyebrow: "01 — Source",
+    eyebrow: "01 · Source",
     title: "It starts with Alphonso.",
-    body: "Alphonso mango is the variety chefs argue over — short season, high sugar, a smell that fills the room before you cut into it. Everything on the Mango Factory menu, sweet or savory, is built around what that fruit can do.",
+    body: "Alphonso mango is the variety chefs argue over. Short season, high sugar, a smell that fills the room before you cut into it. Everything on the menu is built around it.",
     image: "https://images.unsplash.com/photo-1556392190-1719f2755322?auto=format&fit=crop&w=1400&q=85",
     alt: "Green mangoes ripening on the tree",
   },
   {
     id: "harvest",
-    eyebrow: "02 — Harvest",
+    eyebrow: "02 · Harvest",
     title: "Ripe enough to eat plain.",
-    body: "We pick for flavor, not shelf life. If a mango isn't sweet enough to eat on its own, it doesn't make it into a shake, a juice, or a slice — the bar is that simple, and it's the reason regulars notice the difference.",
+    body: "We pick for flavor, not shelf life. If a mango isn't sweet enough to eat on its own, it doesn't make it into a shake, a juice, or a slice. That is the whole bar.",
     image: "https://images.unsplash.com/photo-1550825570-8ae96cf12d87?auto=format&fit=crop&w=1400&q=85",
     alt: "Pile of ripe whole mangoes",
   },
   {
     id: "press",
-    eyebrow: "03 — Press",
+    eyebrow: "03 · Press",
     title: "Pure Alphonso, nothing added.",
     body: "The Fresh Alphonso Mango Juice and Sweet Mango Milkshake both run on one rule: no added sugar. The fruit is already there. Blending it thin and watering it down would just be hiding what made you order it.",
     image: "https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?auto=format&fit=crop&w=1400&q=85",
@@ -36,7 +36,7 @@ const storyPanels: StoryPanel[] = [
   },
   {
     id: "kitchen",
-    eyebrow: "04 — Kitchen",
+    eyebrow: "04 · Kitchen",
     title: "Then the savory side wakes up.",
     body: `The Desi Veg Paneer Burger is the one people come back for first: paneer, cheddar, roasted onion, and house chutney stacked on a brioche bun for ${signatures[0]?.price ?? "$16.99"}. It's the proof that "mango" doesn't mean dessert-only.`,
     image: "https://images.unsplash.com/photo-1688246780164-00c01647e78c?auto=format&fit=crop&w=1400&q=85",
@@ -44,9 +44,9 @@ const storyPanels: StoryPanel[] = [
   },
   {
     id: "homemade",
-    eyebrow: "05 — Homemade",
+    eyebrow: "05 · Homemade",
     title: "The sweet finish is made in-house.",
-    body: "The mango cheesecake, the mango cream cheese, the chutney on every burger — all made in our own kitchen, in small batches, from scratch. It's the part you can't buy off a shelf, and the reason regulars keep coming back.",
+    body: "The mango cheesecake, the mango cream cheese, the chutney on every burger. All made in our own kitchen, in small batches, from scratch.",
     image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1400&q=85",
     alt: "Slice of mango cheesecake on a plate",
   },
@@ -91,8 +91,8 @@ export function AboutStory() {
             </MotionItem>
             <MotionItem variant="rise">
               <p className="about-hero-sub max-w-2xl">
-                A San Jose counter built around Alphonso mango — fresh drinks on one side,
-                desi burgers and homemade mango sweets on the other, served {site.hours.toLowerCase()}.
+                A San Jose counter built around Alphonso mango. Fresh drinks on one side,
+                desi burgers and homemade sweets on the other, served {site.hours.toLowerCase()}.
               </p>
             </MotionItem>
             <MotionItem variant="softScale">
@@ -125,8 +125,7 @@ export function AboutStory() {
         <p className="label">The journey</p>
         <h2 className="display-section text-balance">From orchard to order, in five stops.</h2>
         <p className="max-w-2xl leading-7 font-[620] text-[var(--muted)]">
-          Scroll through how a mango becomes the menu — and where the savory side comes in to
-          balance it out.
+          Scroll through how a mango becomes the menu, and where the savory side balances it out.
         </p>
       </section>
 
