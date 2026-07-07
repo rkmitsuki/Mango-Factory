@@ -351,23 +351,17 @@ export type StoryPanel = {
 function ScrollStoryPanel({
   panel,
   isActive,
-  onActivate,
+  registerRef,
 }: {
   panel: StoryPanel;
   isActive: boolean;
-  onActivate: () => void;
+  registerRef: (el: HTMLElement | null) => void;
 }) {
   const reduce = useReducedMotion();
-  const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { margin: "-45% 0px -45% 0px" });
-
-  useEffect(() => {
-    if (inView) onActivate();
-  }, [inView, onActivate]);
 
   return (
     <motion.article
-      ref={ref}
+      ref={registerRef}
       className={`scroll-story-panel${isActive ? " is-active" : ""}`}
       initial={reduce ? { opacity: 1 } : { opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -384,6 +378,45 @@ function ScrollStoryPanel({
 export function ScrollStory({ panels }: { panels: StoryPanel[] }) {
   const reduce = useReducedMotion();
   const [active, setActive] = useState(0);
+  const panelRefs = useRef<(HTMLElement | null)[]>([]);
+
+  useEffect(() => {
+    let frame = 0;
+
+    const updateActive = () => {
+      frame = 0;
+      const viewportCenter = window.innerHeight / 2;
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+
+      panelRefs.current.forEach((el, index) => {
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const distance = Math.abs((rect.top + rect.bottom) / 2 - viewportCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setActive((current) => (current === closestIndex ? current : closestIndex));
+    };
+
+    const onScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(updateActive);
+    };
+
+    updateActive();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, [panels.length]);
 
   return (
     <div className="scroll-story">
@@ -420,7 +453,9 @@ export function ScrollStory({ panels }: { panels: StoryPanel[] }) {
             key={panel.id}
             panel={panel}
             isActive={active === index}
-            onActivate={() => setActive(index)}
+            registerRef={(el) => {
+              panelRefs.current[index] = el;
+            }}
           />
         ))}
       </div>
