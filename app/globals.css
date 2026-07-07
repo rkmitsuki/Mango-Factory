@@ -2555,15 +2555,20 @@ a {
 
 .scroll-story-media {
   position: sticky;
-  top: 5rem;
+  top: 72px;
+  height: calc(100svh - 72px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .scroll-story-media-frame {
   position: relative;
+  width: 100%;
   border-radius: 16px;
   overflow: hidden;
   aspect-ratio: 3 / 4;
-  max-height: calc(100svh - 5rem - 2rem);
+  max-height: calc(100svh - 72px - 3rem);
   box-shadow: var(--shadow-soft);
   background: var(--night);
 }
@@ -2773,6 +2778,8 @@ a {
   .scroll-story-media {
     position: relative;
     top: 0;
+    height: auto;
+    display: block;
     margin-bottom: 8px;
   }
 

@@ -7,7 +7,7 @@ export const site = {
   shortName: "MF",
   tagline: "Fresh Alphonso mango drinks, desi burgers, and homemade mango sweets.",
   address: "326 Commercial St, San Jose, CA",
-  hours: "Open daily at 11 AM",
+  hours: "Open daily",
   phone: "(408) 555-0198",
   phoneHref: "tel:+14085550198",
   orderUrl: "https://www.doordash.com/store/mango-factory-san-jose-33771065/",
@@ -78,7 +78,7 @@ export const proof = [
   ["4.9", "Google rating"],
   ["$16.99", "Desi Veg Burger"],
   ["10+", "5-star reviews"],
-  ["11 AM", "opens daily"],
+  ["Daily", "Open every day"],
 ] as const;
 
 export const menuSections: MenuSection[] = fallbackMenuSections;

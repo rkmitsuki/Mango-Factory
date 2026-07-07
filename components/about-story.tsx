@@ -57,7 +57,7 @@ const marqueeItems = [
   "326 COMMERCIAL ST, SAN JOSE",
   "DESI BURGERS",
   "HOMEMADE SWEETS",
-  "OPEN DAILY AT 11 AM",
+  "OPEN DAILY",
   "DOORDASH READY",
 ];
 
@@ -111,9 +111,9 @@ export function AboutStory() {
                 </div>
                 <div className="about-hero-stat">
                   <strong>
-                    <Counter value={11} suffix=" AM" />
+                    <Counter value={10} suffix="+" />
                   </strong>
-                  <span>Doors open daily</span>
+                  <span>Five-star reviews</span>
                 </div>
               </div>
             </MotionItem>

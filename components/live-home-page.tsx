@@ -100,7 +100,7 @@ export function LiveHomePage() {
             </MotionItem>
             <MotionItem>
               <p className="hero-meta">
-                <span>★ 4.9</span> on Google · Open daily at 11 AM · No added sugar
+                <span>★ 4.9</span> on Google · Open daily · No added sugar
               </p>
             </MotionItem>
           </div>

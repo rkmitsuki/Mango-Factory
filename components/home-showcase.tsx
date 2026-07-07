@@ -177,7 +177,7 @@ export function LocationMap() {
         <p className="label">Find us</p>
         <h2 className="display-section text-balance">Downtown San Jose, on Commercial St.</h2>
         <p>
-          Find us at 326 Commercial St. Order on DoorDash or come in. We open daily at 11 AM.
+          Find us at 326 Commercial St. Order on DoorDash for delivery, or order ahead for pickup.
         </p>
         <div className="map-actions">
           <a className="button button-primary" href={site.orderUrl} target="_blank" rel="noreferrer">
@@ -188,7 +188,7 @@ export function LocationMap() {
           </a>
         </div>
         <div className="map-badges">
-          <span>Open daily at 11 AM</span>
+          <span>Open daily</span>
           <span>Commercial St</span>
           <span>San Jose</span>
         </div>

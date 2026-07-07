@@ -38,9 +38,9 @@ export function DirectionsView() {
           </div>
 
           <div className="directions-card">
-            <p className="label">Hours</p>
-            <strong>Open every day</strong>
-            <p>Doors open at 11 AM</p>
+            <p className="label">Open</p>
+            <strong>Every day</strong>
+            <p>Order ahead for pickup or delivery.</p>
           </div>
 
           <div className="directions-card">

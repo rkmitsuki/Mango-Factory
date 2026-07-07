@@ -4,7 +4,7 @@ import { DirectionsView } from "@/components/directions-view";
 export const metadata: Metadata = {
   title: "Directions | Mango Factory",
   description:
-    "Find Mango Factory at 326 Commercial St in downtown San Jose. Open daily at 11 AM. Get directions, hours, and how to order.",
+    "Find Mango Factory at 326 Commercial St in downtown San Jose. Open daily. Get directions and how to order for pickup or delivery.",
 };
 
 export default function DirectionsPage() {
