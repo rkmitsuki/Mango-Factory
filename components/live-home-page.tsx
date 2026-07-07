@@ -143,6 +143,7 @@ export function LiveHomePage() {
       />
 
       <section className="story-section">
+        <div className="story-section-aura" aria-hidden="true" />
         <Reveal className="section-shell story-head">
           <p className="label">What makes it ours</p>
           <h2 className="display-section text-balance">Fresh fruit, made by hand.</h2>
