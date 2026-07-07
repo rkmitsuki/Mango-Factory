@@ -2608,7 +2608,7 @@ a {
 .scroll-story-panels {
   display: grid;
   gap: 2px;
-  padding-block: 0 20vh;
+  padding-block: 36vh;
 }
 
 .scroll-story-panel {
