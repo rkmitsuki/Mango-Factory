@@ -72,28 +72,7 @@ export function LiveHomePage() {
   const barDrinks = mangoBar ? mangoBar.items.slice(0, 3) : [];
 
   return (
-    <main className="home-page">
-      <div className="home-flow" aria-hidden="true">
-        <svg viewBox="0 0 400 3000" preserveAspectRatio="none" width="100%" height="100%">
-          <defs>
-            <linearGradient id="homeFlowGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#ffd166" />
-              <stop offset="45%" stopColor="#f2a541" />
-              <stop offset="100%" stopColor="#c97b1f" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M200,-80 C350,80 50,240 200,400 C350,560 50,720 200,880
-               C350,1040 50,1200 200,1360 C350,1520 50,1680 200,1840
-               C350,2000 50,2160 200,2320 C350,2480 50,2640 200,2800
-               C350,2960 50,3080 200,3200"
-            fill="none"
-            stroke="url(#homeFlowGradient)"
-            strokeWidth="150"
-            strokeLinecap="round"
-          />
-        </svg>
-      </div>
+    <main>
       <section className="hero-section">
         <div className="hero-grid-overlay" />
         <MotionGroup className="section-shell hero-layout">
@@ -164,6 +143,7 @@ export function LiveHomePage() {
       />
 
       <section className="story-section">
+        <div className="story-section-aura" aria-hidden="true" />
         <Reveal className="section-shell story-head">
           <p className="label">What makes it ours</p>
           <h2 className="display-section text-balance">Fresh fruit, made by hand.</h2>
