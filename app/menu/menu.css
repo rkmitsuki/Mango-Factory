@@ -43,7 +43,7 @@
   position: sticky;
   top: 72px;
   z-index: 40;
-  background: color-mix(in srgb, var(--background) 88%, transparent);
+  background: color-mix(in srgb, var(--background) 97%, transparent);
   backdrop-filter: blur(16px) saturate(1.2);
   -webkit-backdrop-filter: blur(16px) saturate(1.2);
   border-block: 1px solid var(--line);
@@ -165,12 +165,12 @@
   position: relative;
   overflow: hidden;
   margin-top: 8px;
-  padding-block: clamp(40px, 4.5vw, 64px);
+  padding-block: clamp(14px, 1.8vw, 24px) clamp(40px, 4.5vw, 64px);
   background: linear-gradient(
     180deg,
     var(--background) 0%,
-    #ffe27a 24%,
-    #ffcf4d 50%,
+    #ffe27a 10%,
+    #ffcf4d 42%,
     #ffe27a 76%,
     var(--background) 100%
   );
