@@ -10,8 +10,15 @@
 /* ─── Hero (compact, light) ────────────────────────────────────────────────── */
 
 .menu-hero {
+  min-height: calc(100svh - 72px);
+  display: flex;
+  align-items: center;
   padding-block: 128px 44px;
   background: var(--background);
+}
+
+.menu-hero > .section-shell {
+  width: min(1180px, calc(100% - 32px));
 }
 
 .menu-hero-title {
