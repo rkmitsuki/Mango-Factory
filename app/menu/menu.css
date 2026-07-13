@@ -165,8 +165,8 @@
   position: relative;
   overflow: hidden;
   margin-top: 8px;
-  padding-block: clamp(72px, 9vw, 124px);
-  background: linear-gradient(180deg, #f6ead1 0%, #f1e2c3 100%);
+  padding-block: clamp(40px, 4.5vw, 64px);
+  background: linear-gradient(180deg, #ffe27a 0%, #ffcf4d 100%);
   border-top: 1px solid rgba(181, 133, 47, 0.3);
 }
 
@@ -195,7 +195,7 @@
 
 .mango-bar-head {
   max-width: 60ch;
-  margin-bottom: clamp(40px, 6vw, 76px);
+  margin-bottom: clamp(24px, 3.2vw, 36px);
 }
 
 .mango-bar-eyebrow {
@@ -211,25 +211,25 @@
 .mango-bar-title {
   margin: 0;
   font-family: var(--font-display), Georgia, serif;
-  font-size: clamp(2.2rem, 4.4vw, 3.7rem);
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
   font-weight: 850;
-  line-height: 1.02;
+  line-height: 1.04;
   letter-spacing: -0.02em;
   color: var(--ink);
 }
 
 .mango-bar-note {
-  margin: 18px 0 0;
-  font-size: 1.06rem;
-  line-height: 1.6;
-  color: #7a6a52;
+  margin: 12px 0 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: #6b5a3f;
   max-width: 54ch;
 }
 
 .mango-bar-flight {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(20px, 3vw, 36px);
+  gap: clamp(16px, 2.2vw, 26px);
   align-items: start;
 }
 
@@ -250,7 +250,7 @@
 
 .mango-pour-media {
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
 }
 
@@ -284,8 +284,8 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 6px;
-  padding: 18px 20px 22px;
+  gap: 4px;
+  padding: 14px 16px 16px;
 }
 
 .mango-pour-body h3 {
