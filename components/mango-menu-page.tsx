@@ -11,6 +11,24 @@ import { useLiveMenuSections } from "@/lib/use-live-menu-sections";
 const EASE_OUT = [0.16, 1, 0.3, 1] as const;
 const MANGO_BAR = "Mango Bar";
 
+/** Minimal line-art mango silhouette used as ambient hero decoration. */
+function MangoOutline({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 100 100"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.4"
+      strokeLinecap="round"
+      aria-hidden="true"
+    >
+      <path d="M56,11 C60,5 66,3 72,5" />
+      <path d="M58,10 C40,8 20,20 14,43 C8,65 21,87 46,93 C69,86 89,65 86,42 C84,21 74,10 58,10 Z" />
+    </svg>
+  );
+}
+
 function toSectionId(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 }
@@ -191,6 +209,13 @@ export function MenuPageClient() {
     <main className="menu-page">
       {/* ── Hero ──────────────────────────────────────────────────────── */}
       <header className="menu-hero">
+        <div className="menu-hero-decor" aria-hidden="true">
+          <MangoOutline className="menu-hero-mango menu-hero-mango-a" />
+          <MangoOutline className="menu-hero-mango menu-hero-mango-b" />
+          <MangoOutline className="menu-hero-mango menu-hero-mango-c" />
+          <MangoOutline className="menu-hero-mango menu-hero-mango-d" />
+        </div>
+
         <div className="section-shell">
           <motion.p
             className="label"
@@ -218,6 +243,19 @@ export function MenuPageClient() {
             burgers and homemade mango sweets.
           </motion.p>
         </div>
+
+        <motion.a
+          href="#mango-bar"
+          className="menu-hero-scrollcue"
+          initial={reduce ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, ease: EASE_OUT, delay: 0.5 }}
+        >
+          <span>Scroll to explore</span>
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+            <path d="M4 7l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </motion.a>
       </header>
 
       {/* ── Sticky category + search bar ──────────────────────────────── */}

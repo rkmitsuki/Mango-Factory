@@ -10,6 +10,8 @@
 /* ─── Hero (compact, light) ────────────────────────────────────────────────── */
 
 .menu-hero {
+  position: relative;
+  overflow: hidden;
   min-height: calc(100svh - 72px);
   display: flex;
   align-items: center;
@@ -18,7 +20,136 @@
 }
 
 .menu-hero > .section-shell {
+  position: relative;
+  z-index: 1;
   width: min(1180px, calc(100% - 32px));
+}
+
+/* ─── Ambient hero decoration ──────────────────────────────────────────────── */
+
+.menu-hero-decor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.menu-hero-mango {
+  position: absolute;
+  color: var(--mango-deep);
+}
+
+.menu-hero-mango-a {
+  width: 168px;
+  top: 10%;
+  left: 4%;
+  opacity: 0.1;
+  transform: rotate(-16deg);
+  animation: mangoDriftA 13s ease-in-out infinite;
+}
+
+.menu-hero-mango-b {
+  width: 108px;
+  top: 72%;
+  left: 92%;
+  opacity: 0.14;
+  transform: rotate(24deg);
+  animation: mangoDriftB 10.5s ease-in-out infinite;
+}
+
+.menu-hero-mango-c {
+  width: 60px;
+  top: 16%;
+  left: 88%;
+  opacity: 0.16;
+  transform: rotate(10deg);
+  animation: mangoDriftC 8s ease-in-out infinite;
+}
+
+.menu-hero-mango-d {
+  width: 82px;
+  top: 76%;
+  left: 8%;
+  opacity: 0.12;
+  transform: rotate(-30deg);
+  animation: mangoDriftA 11.5s ease-in-out infinite reverse;
+}
+
+@keyframes mangoDriftA {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-16deg); }
+  50% { transform: translate3d(10px, -16px, 0) rotate(-11deg); }
+}
+
+@keyframes mangoDriftB {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(24deg); }
+  50% { transform: translate3d(-12px, 14px, 0) rotate(29deg); }
+}
+
+@keyframes mangoDriftC {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(10deg); }
+  50% { transform: translate3d(-8px, 10px, 0) rotate(5deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-hero-mango {
+    animation: none;
+  }
+}
+
+/* ─── Scroll cue ───────────────────────────────────────────────────────────── */
+
+.menu-hero-scrollcue {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transform: translateX(-50%);
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.menu-hero-scrollcue:hover {
+  color: var(--mango-deep);
+}
+
+.menu-hero-scrollcue span {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.menu-hero-scrollcue svg {
+  width: 18px;
+  height: 18px;
+  animation: scrollCueBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollCueBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-hero-scrollcue svg {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .menu-hero-mango-a { width: 100px; }
+  .menu-hero-mango-b { width: 70px; }
+  .menu-hero-mango-c { width: 40px; }
+  .menu-hero-mango-d { width: 54px; }
+
+  .menu-hero-scrollcue {
+    bottom: 24px;
+  }
 }
 
 .menu-hero-title {
