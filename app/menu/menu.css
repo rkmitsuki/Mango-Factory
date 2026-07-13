@@ -166,20 +166,25 @@
   overflow: hidden;
   margin-top: 8px;
   padding-block: clamp(40px, 4.5vw, 64px);
-  background: linear-gradient(180deg, #ffe27a 0%, #ffcf4d 100%);
-  border-top: 1px solid rgba(181, 133, 47, 0.3);
+  background: linear-gradient(
+    180deg,
+    var(--background) 0%,
+    #ffe27a 24%,
+    #ffcf4d 50%,
+    #ffe27a 76%,
+    var(--background) 100%
+  );
 }
 
 .mango-bar-aura {
   position: absolute;
-  inset: -28% -12% auto -12%;
-  height: 82%;
+  inset: -6% -12%;
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(55% 60% at 80% 18%, rgba(181, 133, 47, 0.32), transparent 62%),
-    radial-gradient(46% 55% at 10% 92%, rgba(200, 120, 40, 0.16), transparent 60%);
-  filter: blur(10px);
+    radial-gradient(48% 55% at 72% 40%, rgba(255, 255, 255, 0.4), transparent 68%),
+    radial-gradient(44% 50% at 26% 62%, rgba(181, 133, 47, 0.24), transparent 66%);
+  filter: blur(28px);
   animation: mangoAura 18s ease-in-out infinite alternate;
 }
 
